@@ -449,8 +449,11 @@ function readShareCode() {
         } else {
           if (data) {
             console.log(`随机取个${randomCount}码放到您固定的互助码后面(不影响已有固定互助)`)
+            const data = {"code": 200,"message": '',"data":[ 'MTE1NDQ5OTIwMDAwMDAwNDI2ODIwNTU=','MTE1NDQ5OTIwMDAwMDAwNDM2MzA1NDE=','MTE1NDQ5MzYwMDAwMDAwNDI2ODMyNzU=','MTE1NDAxNzgwMDAwMDAwNDI3MTM5Njc='], 'powered by': 'TNanko',
+  'sponsored by': 'tg@EvineD'};
             data = JSON.parse(data);
             console.log(data)
+
           }
         }
       } catch (e) {
