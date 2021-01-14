@@ -441,16 +441,14 @@ async function showMsg() {
 }
 function readShareCode() {
   return new Promise(async resolve => {
-    $.get({url: `http://api.turinglabs.net/api/v1/jd/pet/read/${randomCount}/`, 'timeout': 10000}, (err, resp, shuye) => {
+    $.get({url: `http://api.turinglabs.net/api/v1/jd/pet/read/${randomCount}/`, 'timeout': 10000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
-          if (shuye) {
-            //console.log(`随机取个${randomCount}码放到您固定的互助码后面(不影响已有固定互助)`)
-            const data = ['MTE1NDQ5OTIwMDAwMDAwNDI2ODIwNTU=@MTE1NDQ5OTIwMDAwMDAwNDM2MzA1NDE=@MTE1NDQ5MzYwMDAwMDAwNDI2ODMyNzU=@MTE1NDAxNzgwMDAwMDAwNDI3MTM5Njc=@MTEzMzI0OTE0NTAwMDAwMDA0MjcxMzk4OQ==@MTE1NDUwMTI0MDAwMDAwMDQyODcyMDMx@MTE1NDUwMTI0MDAwMDAwMDQzMDA4Mzc1@MTE1NDQ5OTUwMDAwMDAwNDI3MTA5NTM=','MTE1NDQ5OTIwMDAwMDAwNDI2ODIwNTU=@MTE1NDQ5OTIwMDAwMDAwNDM2MzA1NDE=@MTE1NDQ5MzYwMDAwMDAwNDI2ODMyNzU=@MTE1NDAxNzgwMDAwMDAwNDI3MTM5Njc=@MTEzMzI0OTE0NTAwMDAwMDA0MjcxMzk4OQ==@MTE1NDUwMTI0MDAwMDAwMDQyODcyMDMx@MTE1NDUwMTI0MDAwMDAwMDQzMDA4Mzc1@MTE1NDQ5OTUwMDAwMDAwNDI3MTA5NTM=','MTE1NDQ5OTIwMDAwMDAwNDI2ODIwNTU=@MTE1NDQ5OTIwMDAwMDAwNDM2MzA1NDE=@MTE1NDQ5MzYwMDAwMDAwNDI2ODMyNzU=@MTE1NDAxNzgwMDAwMDAwNDI3MTM5Njc=@MTEzMzI0OTE0NTAwMDAwMDA0MjcxMzk4OQ==@MTE1NDUwMTI0MDAwMDAwMDQyODcyMDMx@MTE1NDUwMTI0MDAwMDAwMDQzMDA4Mzc1@MTE1NDQ5OTUwMDAwMDAwNDI3MTA5NTM=','MTE1NDQ5OTIwMDAwMDAwNDI2ODIwNTU=@MTE1NDQ5OTIwMDAwMDAwNDM2MzA1NDE=@MTE1NDQ5MzYwMDAwMDAwNDI2ODMyNzU=@MTE1NDAxNzgwMDAwMDAwNDI3MTM5Njc=@MTEzMzI0OTE0NTAwMDAwMDA0MjcxMzk4OQ==@MTE1NDUwMTI0MDAwMDAwMDQyODcyMDMx@MTE1NDUwMTI0MDAwMDAwMDQzMDA4Mzc1@MTE1NDQ5OTUwMDAwMDAwNDI3MTA5NTM=',];
-            console.log(data)
+          if (data) {
+            console.log(`随机取个${randomCount}码放到您固定的互助码后面(不影响已有固定互助)`)
             data = JSON.parse(data);
           }
         }
@@ -476,7 +474,14 @@ function shareCodesFormat() {
       newShareCodes = shareCodes[tempIndex].split('@');
     }
     //因好友助力功能下线。故暂时屏蔽
-    const readShareCodeRes = await readShareCode();
+    const readShareCodeRes = [ // IOS本地脚本用户这个列表填入你要助力的好友的shareCode
+   //账号一的好友shareCode,不同好友的shareCode中间用@符号隔开
+  'MTE1NDQ5OTIwMDAwMDAwNDI2ODIwNTU=@MTE1NDQ5OTIwMDAwMDAwNDM2MzA1NDE=@MTE1NDQ5MzYwMDAwMDAwNDI2ODMyNzU=@MTE1NDAxNzgwMDAwMDAwNDI3MTM5Njc=@MTEzMzI0OTE0NTAwMDAwMDA0MjcxMzk4OQ==@MTE1NDUwMTI0MDAwMDAwMDQyODcyMDMx@MTE1NDUwMTI0MDAwMDAwMDQzMDA4Mzc1@MTE1NDQ5OTUwMDAwMDAwNDI3MTA5NTM=',
+  //账号二的好友shareCode,不同好友的shareCode中间用@符号隔开
+  'MTE1NDQ5OTIwMDAwMDAwNDI2ODIwNTU=@MTE1NDQ5OTIwMDAwMDAwNDM2MzA1NDE=@MTE1NDQ5MzYwMDAwMDAwNDI2ODMyNzU=@MTE1NDAxNzgwMDAwMDAwNDI3MTM5Njc=@MTEzMzI0OTE0NTAwMDAwMDA0MjcxMzk4OQ==@MTE1NDUwMTI0MDAwMDAwMDQyODcyMDMx@MTE1NDUwMTI0MDAwMDAwMDQzMDA4Mzc1@MTE1NDQ5OTUwMDAwMDAwNDI3MTA5NTM=',
+  'MTE1NDQ5OTIwMDAwMDAwNDI2ODIwNTU=@MTE1NDQ5OTIwMDAwMDAwNDM2MzA1NDE=@MTE1NDQ5MzYwMDAwMDAwNDI2ODMyNzU=@MTE1NDAxNzgwMDAwMDAwNDI3MTM5Njc=@MTEzMzI0OTE0NTAwMDAwMDA0MjcxMzk4OQ==@MTE1NDUwMTI0MDAwMDAwMDQyODcyMDMx@MTE1NDUwMTI0MDAwMDAwMDQzMDA4Mzc1@MTE1NDQ5OTUwMDAwMDAwNDI3MTA5NTM=',
+  'MTE1NDQ5OTIwMDAwMDAwNDI2ODIwNTU=@MTE1NDQ5OTIwMDAwMDAwNDM2MzA1NDE=@MTE1NDQ5MzYwMDAwMDAwNDI2ODMyNzU=@MTE1NDAxNzgwMDAwMDAwNDI3MTM5Njc=@MTEzMzI0OTE0NTAwMDAwMDA0MjcxMzk4OQ==@MTE1NDUwMTI0MDAwMDAwMDQyODcyMDMx@MTE1NDUwMTI0MDAwMDAwMDQzMDA4Mzc1@MTE1NDQ5OTUwMDAwMDAwNDI3MTA5NTM=',
+]
     //const readShareCodeRes = null;
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || [])])];
