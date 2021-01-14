@@ -474,7 +474,7 @@ function shareCodesFormat() {
       newShareCodes = shareCodes[tempIndex].split('@');
     }
     //因好友助力功能下线。故暂时屏蔽
-    const readShareCodeRes = await readShareCode();
+    const readShareCodeRes = ["MTE1NDQ5OTIwMDAwMDAwNDI2ODIwNTU=","MTE1NDQ5OTIwMDAwMDAwNDM2MzA1NDE=","MTE1NDQ5MzYwMDAwMDAwNDI2ODMyNzU=","MTE1NDAxNzgwMDAwMDAwNDI3MTM5Njc=","MTEzMzI0OTE0NTAwMDAwMDA0MjcxMzk4OQ==","MTE1NDUwMTI0MDAwMDAwMDQyODcyMDMx==","MTE1NDUwMTI0MDAwMDAwMDQzMDA4Mzc1=","MTE1NDQ5OTUwMDAwMDAwNDI3MTA5NTM="];
     console.log(readShareCodeRes)
     //const readShareCodeRes = null;
     if (readShareCodeRes && readShareCodeRes.code === 200) {
