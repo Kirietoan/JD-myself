@@ -630,8 +630,8 @@ function readShareCode() {
         } else {
           if (shuye) {
             console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
-            console.log(shuye)
-            data = [`T022v_13RxwZ91ffPR_wlPcNfACjVWnYaS5kRrbA`,`T0205KkcH1lQpB6qW3uX06FuCjVWnYaS5kRrbA`];
+            //console.log(shuye)
+            const data = [`T022v_13RxwZ91ffPR_wlPcNfACjVWnYaS5kRrbA`,`T0205KkcH1lQpB6qW3uX06FuCjVWnYaS5kRrbA`];
             data = JSON.parse(data);
           }
         }
