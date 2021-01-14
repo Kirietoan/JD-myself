@@ -622,16 +622,14 @@ function jdfactory_getHomeData() {
 function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
-    $.get({url: `http://api.turinglabs.net/api/v1/jd/ddfactory/read/${randomCount}/`, timeout: 10000}, (err, resp, shuye) => {
+    $.get({url: `http://api.turinglabs.net/api/v1/jd/ddfactory/read/${randomCount}/`, timeout: 10000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
-          if (shuye) {
+          if (data) {
             console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
-            //console.log(shuye)
-            const data = [`T022v_13RxwZ91ffPR_wlPcNfACjVWnYaS5kRrbA`,`T0205KkcH1lQpB6qW3uX06FuCjVWnYaS5kRrbA`];
             data = JSON.parse(data);
           }
         }
