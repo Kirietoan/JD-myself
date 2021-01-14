@@ -450,7 +450,6 @@ function readShareCode() {
           if (data) {
             console.log(`随机取个${randomCount}码放到您固定的互助码后面(不影响已有固定互助)`)
             data = JSON.parse(data);
-            console.log(`此处为453行data数据${data}`)
           }
         }
       } catch (e) {
@@ -473,7 +472,6 @@ function shareCodesFormat() {
       console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
       const tempIndex = $.index > shareCodes.length ? (shareCodes.length - 1) : ($.index - 1);
       newShareCodes = shareCodes[tempIndex].split('@');
-      console.log(`此处为476行newShareCodes数据${newShareCodes}`)
     }
     //因好友助力功能下线。故暂时屏蔽
     const readShareCodeRes = await readShareCode();
