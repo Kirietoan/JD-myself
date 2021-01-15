@@ -27,10 +27,10 @@ let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭�
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 let helpAuthor = true;
-const randomCount = $.isNode() ? 20 : 5;
+const randomCount = 0;
 const inviteCodes = [
-  `Ihsza-6yZP8u7GvRy3MU3g@9YWMtUcosWudJONU@Ih4-bOmxZv8v-Wi6iw@95OxuU0Ss1qcJeZTH_uV@eU9YM6v7N7Zbig-2jCV3@eU9Yae_hYK0m9maDniYR1g@eU9YaOi6NPx19WfUwyYa1A`,
-  `Ihsza-6yZP8u7GvRy3MU3g@9YWMtUcosWudJONU@Ih4-bOmxZv8v-Wi6iw@95OxuU0Ss1qcJeZTH_uV@eU9YM6v7N7Zbig-2jCV3@eU9Yae_hYK0m9maDniYR1g@eU9YaOi6NPx19WfUwyYa1A`
+  `Ihsza-6yZP8u7GvRy3MU3g@9YWMtUcosWudJONU@9YWMtUcosWudJONU@95OxuU0Ss1qcJeZTH_uV@eU9YaOi6NPx19WfUwyYa1A@eU9Yae_hYK0m9maDniYR1g@eU9YaOi6NPx19WfUwyYa1A`,
+  `Ihsza-6yZP8u7GvRy3MU3g@9YWMtUcosWudJONU@9YWMtUcosWudJONU@95OxuU0Ss1qcJeZTH_uV@eU9YaOi6NPx19WfUwyYa1A@eU9Yae_hYK0m9maDniYR1g@eU9YaOi6NPx19WfUwyYa1A`
 ]
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -365,7 +365,7 @@ function taskUrl(functionId, body = {}) {
 
 function getAuthorShareCode() {
   return new Promise(resolve => {
-    $.get({url: "https://gitee.com/soundshuye/Some-ID/blob/master/jd_cash.json",headers:{
+    $.get({url: "https://gitee.com/soundshuye/Some-ID/raw/master/jd_cash.json",headers:{
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
       }}, async (err, resp, data) => {
       $.authorCode = [];

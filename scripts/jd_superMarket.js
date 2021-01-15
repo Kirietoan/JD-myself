@@ -37,12 +37,9 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
 //下面给出两个账号的填写示例（iOS只支持2个京东账号）
 let shareCodes = [ // IOS本地脚本用户这个列表填入你要助力的好友的shareCode
   //账号一的好友shareCode,不同好友的shareCode中间用@符号隔开
-  'Ihsza-6yZP8u7GvRy3MU3g@eU9YM6v7N7Zbig-2jCV3@eU9Yae_hYK0m9maDniYR1g@Ih4-bOmxZv8v-Wi6iw@9YWMtUcosWudJONU@95OxuU0Ss1qcJeZTH_uV@eU9YaOi6NPx19WfUwyYa1A',
-  'Ihsza-6yZP8u7GvRy3MU3g@eU9YM6v7N7Zbig-2jCV3@eU9Yae_hYK0m9maDniYR1g@Ih4-bOmxZv8v-Wi6iw@9YWMtUcosWudJONU@95OxuU0Ss1qcJeZTH_uV@eU9YaOi6NPx19WfUwyYa1A'
-  'Ihsza-6yZP8u7GvRy3MU3g@eU9YM6v7N7Zbig-2jCV3@eU9Yae_hYK0m9maDniYR1g@Ih4-bOmxZv8v-Wi6iw@9YWMtUcosWudJONU@95OxuU0Ss1qcJeZTH_uV@eU9YaOi6NPx19WfUwyYa1A'
-  'Ihsza-6yZP8u7GvRy3MU3g@eU9YM6v7N7Zbig-2jCV3@eU9Yae_hYK0m9maDniYR1g@Ih4-bOmxZv8v-Wi6iw@9YWMtUcosWudJONU@95OxuU0Ss1qcJeZTH_uV@eU9YaOi6NPx19WfUwyYa1A'
+  '-4msulYas0O2JsRhE-2TA5XZmBQ@eU9Yar_mb_9z92_WmXNG0w@eU9YaejjYv4g8T2EwnsVhQ',
   //账号二的好友shareCode,不同好友的shareCode中间用@符号隔开
-  'Ihsza-6yZP8u7GvRy3MU3g@eU9YM6v7N7Zbig-2jCV3@eU9Yae_hYK0m9maDniYR1g@Ih4-bOmxZv8v-Wi6iw@9YWMtUcosWudJONU@95OxuU0Ss1qcJeZTH_uV@eU9YaOi6NPx19WfUwyYa1A',
+  'aURoM7PtY_Q@eU9Ya-y2N_5z9DvXwyIV0A@eU9YaOnjYK4j-GvWmXIWhA',
 ]
 
 !(async () => {
@@ -324,27 +321,27 @@ async function businessCircleActivity() {
         let Teams = [
           {
             "teamId": "-4msulYas0O2JsRhE-2TA5XZmBQ_1604247312176",
-            "inviteCode": "Ihsza-6yZP8u7GvRy3MU3g"
+            "inviteCode": "-4msulYas0O2JsRhE-2TA5XZmBQ"
           },
           {
             "teamId": "Ih4-a-mwZPUj9Gy6iw_1604277683224",
-            "inviteCode": "Ihsza-6yZP8u7GvRy3MU3g"
+            "inviteCode": "eU9Yar_mb_9z92_WmXNG0w"
           },
           {
             "teamId": "eU9Ya77gZK5z-TqHn3UWhQ_1604277779750",
-            "inviteCode": "Ihsza-6yZP8u7GvRy3MU3g"
+            "inviteCode": "eU9YaOnjYK4j-GvWmXIWhA"
           },
           {
             "teamId": "eU9Ya-y2N_5z9DvXwyIV0A",
-            "inviteCode": "Ihsza-6yZP8u7GvRy3MU3g"
+            "inviteCode": "eU9YaLm0bq4i-TrUzSUUhA"
           },
           {
             "teamId": "eU9Ya-y2N_5z9DvXwyIV0A",
-            "inviteCode": "Ihsza-6yZP8u7GvRy3MU3g"
+            "inviteCode": "aURoM7PtY_Q"
           },
           {
             "teamId": "eU9Ya-y2N_5z9DvXwyIV0A",
-            "inviteCode": "Ihsza-6yZP8u7GvRy3MU3g"
+            "inviteCode": "eU9YaeS3Z6ol8zrRmnMb1Q"
           }
         ]
         Teams = $.updatePkActivityIdRes['Teams'] || Teams;

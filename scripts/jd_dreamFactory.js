@@ -34,7 +34,7 @@ const randomCount = $.isNode() ? 20 : 5;
 let tuanActiveId = `6S9y4sJUfA2vPQP6TLdVIQ==`;
 const jxOpenUrl = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://wqsd.jd.com/pingou/dream_factory/index.html%22%20%7D`;
 let cookiesArr = [], cookie = '', message = '';
-const inviteCodes = ['3YcJMrfh8OClRVhq5TowKA==@kiPudUhBb7pIikDNHQC1lw==@yTm0YyioEekFq34kSK0X6w==@B7wQcNgYSwLNQd3goiAu6g==@exVjdAlWg7W-UBq_rovWmA==@F8sj4kbVbt72fsgq3yAY9Q==@V9dZyRpXEraMKNvs-D8aVNxV93T0LsSlZfhrVVtpFLU=', '3YcJMrfh8OClRVhq5TowKA==@kiPudUhBb7pIikDNHQC1lw==@yTm0YyioEekFq34kSK0X6w==@B7wQcNgYSwLNQd3goiAu6g==@exVjdAlWg7W-UBq_rovWmA==@F8sj4kbVbt72fsgq3yAY9Q==@V9dZyRpXEraMKNvs-D8aVNxV93T0LsSlZfhrVVtpFLU='];
+const inviteCodes = ['V5LkjP4WRyjeCKR9VRwcRX0bBuTz7MEK0-E99EJ7u0k=@0WtCMPNq7jekehT6d3AbFw==', 'PDPM257r_KuQhil2Y7koNw==', "gB99tYLjvPcEFloDgamoBw==", '-OvElMzqeyeGBWazWYjI1Q==', 'GFwo6PntxDHH95ZRzZ5uAg=='];
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -1027,7 +1027,7 @@ async function joinLeaderTuan() {
     }
   }
   $.tuanIdS = null;
-  if (!$.tuanIdS) await updateTuanIdsCDN('https://gitee.com/soundshuye/Some-ID/blob/master/jd_updateFactoryTuanId.json');
+  if (!$.tuanIdS) await updateTuanIdsCDN('https://gitee.com/shylocks/updateTeam/raw/main/jd_updateFactoryTuanId.json');
   if ($.tuanIdS && $.tuanIdS.tuanIds) {
     for (let tuanId of $.tuanIdS.tuanIds) {
       if (!tuanId) continue
@@ -1343,7 +1343,7 @@ function shareCodesFormat() {
 }
 function requireConfig() {
   return new Promise(async resolve => {
-    await updateTuanIdsCDN('https://gitee.com/soundshuye/Some-ID/edit/master/jd_updateFactoryTuanId.json');
+    await updateTuanIdsCDN('https://gitee.com/lxk0301/updateTeam/raw/master/jd_updateFactoryTuanId.json');
     if (!$.tuanIdS) await updateTuanIds();
     if (!$.tuanIdS) await updateTuanIdsCDN('https://cdn.jsdelivr.net/gh/lxk0301/updateTeam@master/jd_updateFactoryTuanId.json');
     if ($.tuanIdS && $.tuanIdS.tuanActiveId) {
