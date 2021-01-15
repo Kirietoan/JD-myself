@@ -1,50 +1,31 @@
-
-name: 京东自动获取助力码
+name: 助力码
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 2 * * *'
-  watch:
-    types: started
-  repository_dispatch:
-    types: jd_get_share_code
-jobs:
-  build:
+    workflow_dispatch:
+    watch:
+        types: [started]
+    repository_dispatch:
+        types: jd_get_share_code
 
-    runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          repository: shuye72/MyActions/scripts
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Cache node_modules
-        uses: actions/cache@v2 # 使用 GitHub 官方的缓存 Action。
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
-      - name: npm install
-        run: |
-          npm install
-      - name: '运行 【京东自动获取助力码】'
-        run: |
-          node jd_get_share_code.js
-        env:
-          JD_COOKIE: ${{ secrets.JD_COOKIE }}
-          JD_DEBUG: ${{ secrets.JD_DEBUG }}
-          PUSH_KEY: ${{ secrets.PUSH_KEY }}
-          BARK_PUSH: ${{ secrets.BARK_PUSH }}
-          BARK_SOUND: ${{ secrets.BARK_SOUND }}
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
-          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
-          IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-          JD_818_SHAREID_NOTIFY: ${{ secrets.JD_818_SHAREID_NOTIFY }}
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        if: github.event.repository.owner.id == github.event.sender.id
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js 10.x
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 10.x
+            - name: npm install
+              run: |
+                  npm install
+            - name: "运行 【助力码】"
+              run: |
+                  node onlyOneExecute.js
+              env:
+                  JD_COOKIE: ${{ github.event.client_payload.JD_COOKIE || secrets.JD_COOKIE }}
+                  JD_DEBUG: ${{ github.event.client_payload.JD_DEBUG || secrets.JD_DEBUG }}
+                  JD_USER_AGENT: ${{ github.event.client_payload.JD_USER_AGENT || secrets.JD_USER_AGENT }}
+                  PUSH_KEY: ${{ github.event.client_payload.PUSH_KEY || secrets.PUSH_KEY }}
+                  SYNCURL: https://github.com/shuye72/MyActions/raw/main/scripts/jd_get_share_code.js
