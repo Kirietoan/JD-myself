@@ -3,7 +3,7 @@ name: 自动获取分享码
 on:
     workflow_dispatch:
     repository_dispatch:
-        types: schedule
+        types: jd_get_share_code
 
 jobs:
     build:
@@ -21,7 +21,7 @@ jobs:
                   npm install
             - name: "运行【自动获取分享码】"
               run: |
-                  node schedule.js
+                  node jd_get_share_code.js
               env:
                   #推送专用
                   PUSH_KEY: ${{ github.event.client_payload.PUSH_KEY || secrets.PUSH_KEY }}
@@ -48,5 +48,5 @@ jobs:
                   GITHUBUSER: ${{ secrets.GITHUBUSER }}
                   TRIGGER_KEYWORDS: ${{ secrets.TRIGGER_KEYWORDS }}
                   #CRONTAB
-                  CRONTAB: ${{ '0 0 0 * * *' }} #定时在每天0和下午4点整执行一次
+                  CRONTAB: ${{ '0 0 0, * * *' }} #定时在每天0和下午4点整执行一次
                   SYNCURL: https://github.com/shuye72/MyActions/blob/main/scripts/jd_get_share_code.js #此处填写你要执行的js
