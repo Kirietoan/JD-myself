@@ -19,7 +19,7 @@ cron "11 1 * * *" script-path=https://raw.githubusercontent.com/yangtingxiao/Qua
 const $ = new Env('京东抽奖机');
 main();
 async function main() {
-  $.http.get({url: `https://purge.jsdelivr.net/gh/shuye72/MyActions@main/QX/jd_lotteryMachine.js`}).then((resp) => {
+  $.http.get({url: `https://purge.jsdelivr.net/gh/yangtingxiao/QuantumultX@master/scripts/jd/jd_lotteryMachine.js`}).then((resp) => {
     if (resp.statusCode === 200) {
       console.log(`${$.name}CDN缓存刷新成功`)
     }
@@ -31,7 +31,7 @@ async function main() {
   }
   $.done()
 }
-function updateShareCodes(url = 'https://raw.githubusercontent.com/shuye72/MyActions/main/QX/jd_lotteryMachine.js') {
+function updateShareCodes(url = 'https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_lotteryMachine.js') {
   return new Promise(resolve => {
     $.get({url}, async (err, resp, data) => {
       try {
@@ -48,7 +48,7 @@ function updateShareCodes(url = 'https://raw.githubusercontent.com/shuye72/MyAct
     })
   })
 }
-function updateShareCodesCDN(url = 'https://raw.fastgit.org/shuye72/MyActions/main/QX/jd_lotteryMachine.js') {
+function updateShareCodesCDN(url = 'https://raw.fastgit.org/yangtingxiao/QuantumultX/master/scripts/jd/jd_lotteryMachine.js') {
   return new Promise(async resolve => {
     $.get({url}, async (err, resp, data) => {
       try {
