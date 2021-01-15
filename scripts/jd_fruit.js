@@ -29,15 +29,15 @@ let cookiesArr = [], cookie = '', jdFruitShareArr = [], isBox = false, notify, n
 //下面给出两个账号的填写示例（iOS只支持2个京东账号）
 let shareCodes = [ // 这个列表填入你要助力的好友的shareCode
    //账号一的好友shareCode,不同好友的shareCode中间用@符号隔开
-  '0a74407df5df4fa99672a037eec61f7e@dbb21614667246fabcfd9685b6f448f3@6fbd26cc27ac44d6a7fed34092453f77@61ff5c624949454aa88561f2cd721bf6@56db8e7bc5874668ba7d5195230d067a@',
+  'c144db23b6fc4e779cf1112d1e1b052d@ed1ccad2bcd940119d93c83b9dfa6fda@fc943e869edf479aa99e1ec01ac26401@fb7f2258765449c693098d163d86463d@b71b5b2efe75423997d05b8017d44077@93bf6db5b5a24707830342a20cd83c44@2dc3b315f6cf4bde8ee3fba309986c1d@d674f26ee3424a1fbcdfb74c799156b9@40037e4227b04bf6b44a8d6dc646381b@840731518a5043dea2e5c663fd6a03f0',
   //账号二的好友shareCode,不同好友的shareCode中间用@符号隔开
-  'b1638a774d054a05a30a17d3b4d364b8@f92cb56c6a1349f5a35f0372aa041ea0@9c52670d52ad4e1a812f894563c746ea@8175509d82504e96828afc8b1bbb9cb3@2673c3777d4443829b2a635059953a28',
+  'c144db23b6fc4e779cf1112d1e1b052d@ed1ccad2bcd940119d93c83b9dfa6fda@fc943e869edf479aa99e1ec01ac26401@fb7f2258765449c693098d163d86463d@b71b5b2efe75423997d05b8017d44077@93bf6db5b5a24707830342a20cd83c44@2dc3b315f6cf4bde8ee3fba309986c1d@d674f26ee3424a1fbcdfb74c799156b9@40037e4227b04bf6b44a8d6dc646381b@840731518a5043dea2e5c663fd6a03f0',
 ]
 let message = '', subTitle = '', option = {}, isFruitFinished = false;
 const retainWater = 100;//保留水滴大于多少g,默认100g;
 let jdNotify = false;//是否关闭通知，false打开通知推送，true关闭通知推送
 let jdFruitBeanCard = false;//农场使用水滴换豆卡(如果出现限时活动时100g水换20豆,此时比浇水划算,推荐换豆),true表示换豆(不浇水),false表示不换豆(继续浇水),脚本默认是浇水
-let randomCount = $.isNode() ? 20 : 5;
+let randomCount = 0;
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const urlSchema = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://h5.m.jd.com/babelDiy/Zeus/3KSjXqQabiTuD1cJ28QskrpWoBKT/index.html%22%20%7D`;
 !(async () => {

@@ -151,7 +151,7 @@ async function doChannelsListTask(taskId, taskType) {
 async function helpFriends() {
   await updateInviteCode();
   if (!$.inviteCodes) await updateInviteCodeCDN();
-  if (!$.inviteCodes) await updateInviteCodeCDN('https://gitee.com/lxk0301/updateTeam/raw/master/jd_updateSmallHomeInviteCode.json');
+  if (!$.inviteCodes) await updateInviteCodeCDN('https://gitee.com/shuye72/updateTeam/raw/master/jd_updateSmallHomeInviteCode.json');
   for (let item of $.inviteCodes.inviteCode) {
     if (!item) continue
     await createAssistUser(item, $.createAssistUserID);
