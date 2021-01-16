@@ -27,7 +27,6 @@ let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭�
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 let helpAuthor = true;
-const randomCount = $.isNode() ? 20 : 5;
 const inviteCodes = [
   `Ihsza-6yZP8u7GvRy3MU3g@9YWMtUcosWudJONU@9YWMtUcosWudJONU@95OxuU0Ss1qcJeZTH_uV@eU9YaOi6NPx19WfUwyYa1A@eU9Yae_hYK0m9maDniYR1g@eU9YaOi6NPx19WfUwyYa1A`,
   `Ihsza-6yZP8u7GvRy3MU3g@9YWMtUcosWudJONU@9YWMtUcosWudJONU@95OxuU0Ss1qcJeZTH_uV@eU9YaOi6NPx19WfUwyYa1A@eU9Yae_hYK0m9maDniYR1g@eU9YaOi6NPx19WfUwyYa1A`
@@ -266,7 +265,7 @@ function readShareCode() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
+            console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
             data = JSON.parse(data);
           }
         }
