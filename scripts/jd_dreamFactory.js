@@ -1203,7 +1203,7 @@ function updateTuanIds(url = 'https://raw.githubusercontent.com/shuye72/updateTe
     })
   })
 }
-function updateTuanIdsCDN(url = 'https://raw.fastgit.org/shuye72/MyActions/main/ID/jd_updateFactoryTuanId.json') {
+function updateTuanIdsCDN(url = 'https://raw.githubusercontent.com/shuye72/updateTeam/master/jd_updateFactoryTuanId.json') {
   return new Promise(async resolve => {
     $.get({url,
       headers:{
