@@ -444,10 +444,10 @@ function getAssistUser() {
         try {
             $.get({url: `https://api.ninesix.cc/api/jx-nc?active=${$.info.active}`, timeout: 10000}, async (err, resp, _data) => {
                 try {
+                    const _data = {"code":200,"data":{"_id":"60032b23cacc716f92ef22e4","__v":0,"active":"jdnc_1_chelizi210108_2","extra":{"active":"jdnc_1_chelizi210108_2"},"name":"lxk0301","type":6,"value":"9fd2b36b50211850d7ead64090e6d28b"}};
                     const {code, data = {}} = JSON.parse(_data);
                     if (data.value) {
                         $.log(`获取随机助力码成功 ${code} ${data.value}`);
-                        const data.value = '9fd2b36b50211850d7ead64090e6d28b';
                         resolve(data.value);
                     } else {
                         $.log(`获取随机助力码失败 ${code}`);
