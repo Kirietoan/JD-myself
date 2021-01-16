@@ -44,7 +44,7 @@ let currentCookie = ''; // 当前用户 cookie
 let tokenNull = {'farm_jstoken': '', 'phoneid': '', 'timestamp': ''}; // 内置一份空的 token
 let tokenArr = []; // 用户 token 数组
 let currentToken = {}; // 当前用户 token
-const shareCode = '9fd2b36b50211850d7ead64090e6d28b@55b3e8ef247a1bc9624095385f34d634@b2db9e876879d33feb40aca71c8df1d7@8d52547e368835489876ba72a4b2a9d4'; // 内置助力码
+const shareCode = ''; // 内置助力码
 let jxncShareCodeArr = []; // 用户 助力码 数组
 let currentShareCode = []; // 当前用户 要助力的助力码
 const openUrl = `openjd://virtual?params=${encodeURIComponent('{ "category": "jump", "des": "m", "url": "https://wqsh.jd.com/sns/201912/12/jxnc/detail.html?ptag=7155.9.32&smp=b47f4790d7b2a024e75279f55f6249b9&active=jdnc_1_chelizi1205_2"}',)}`; // 打开京喜农场
@@ -442,11 +442,12 @@ function submitInviteId(userName) {
 function getAssistUser() {
     return new Promise(resolve => {
         try {
-            $.get({url: `https://raw.githubusercontent.com/shuye72/RandomShareCode/master/JD_Fruit.json`, timeout: 10000}, async (err, resp, _data) => {
+            $.get({url: `https://api.ninesix.cc/api/jx-nc?active=${$.info.active}`, timeout: 10000}, async (err, resp, _data) => {
                 try {
                     const {code, data = {}} = JSON.parse(_data);
                     if (data.value) {
                         $.log(`获取随机助力码成功 ${code} ${data.value}`);
+                        const data.value = '9fd2b36b50211850d7ead64090e6d28b'
                         resolve(data.value);
                     } else {
                         $.log(`获取随机助力码失败 ${code}`);
