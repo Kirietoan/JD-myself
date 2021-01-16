@@ -1297,10 +1297,10 @@ async function showMsg() {
     resolve()
   })
 }
-function readShareCode() {
+function readShareCode(url = 'https://raw.githubusercontent.com/shuye72/RandomShareCode/master/JXGC.json') {
   console.log(`开始`)
   return new Promise(async resolve => {
-    $.get({url: `http://api.turinglabs.net/api/v1/jd/jxfactory/read/${randomCount}/`, 'timeout': 10000}, (err, resp, data) => {
+    $.get({url}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
