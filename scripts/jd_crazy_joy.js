@@ -36,7 +36,6 @@ const inviteCodes = [
   'WYJ0yHMAY9EyV87yr81V6at9zd5YaBeE@BB48h3AETPoBgT0f-in5WQ==@-NIhS5GCc2v5NIQ2iMLVaw==@Nvsdq9jBpUrl3Xj2dwWefQ==@ITHDF803EoO0USld6XQLkKt9zd5YaBeE@McVA9IYe8-vTxiA7HFdw96t9zd5YaBeE@qEkZwFoVEtYRNfdFOj1MWg==',
   'WYJ0yHMAY9EyV87yr81V6at9zd5YaBeE@BB48h3AETPoBgT0f-in5WQ==@-NIhS5GCc2v5NIQ2iMLVaw==@Nvsdq9jBpUrl3Xj2dwWefQ==@ITHDF803EoO0USld6XQLkKt9zd5YaBeE@McVA9IYe8-vTxiA7HFdw96t9zd5YaBeE@qEkZwFoVEtYRNfdFOj1MWg=='
 ];
-const randomCount = 0;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -659,14 +658,14 @@ function taskUrl(functionId, body = '') {
 function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
-    $.get({url: `https://code.chiang.fun/api/v1/jd/jdcrazyjoy/read/${randomCount}/`, 'timeout': 10000}, (err, resp, data) => {
+    $.get({url: `https://raw.githubusercontent.com/shuye72/RandomShareCode/master/JD_Crazy_Joy.json/`, 'timeout': 10000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
+            console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
             data = JSON.parse(data);
           }
         }
