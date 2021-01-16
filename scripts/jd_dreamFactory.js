@@ -1297,10 +1297,10 @@ async function showMsg() {
     resolve()
   })
 }
-function readShareCode(url = 'https://raw.githubusercontent.com/shuye72/RandomShareCode/master/JXGC.json') {
+function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
-    $.get({url}, (err, resp, data) => {
+    $.get({url: `https://raw.githubusercontent.com/shuye72/RandomShareCode/master/JXGC.json`}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -1308,6 +1308,7 @@ function readShareCode(url = 'https://raw.githubusercontent.com/shuye72/RandomSh
         } else {
           if (data) {
             console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
+            console.log(data)
             data = JSON.parse(data);
           }
         }
