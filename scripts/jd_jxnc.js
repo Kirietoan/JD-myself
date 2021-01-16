@@ -444,6 +444,8 @@ function getAssistUser() {
         try {
             $.get({url: `https://api.ninesix.cc/api/jx-nc?active=${$.info.active}`, timeout: 10000}, async (err, resp, _data) => {
                 try {
+                    $.log(`resp ${resp}`);
+                    $.log(`resp ${_data}`);
                     const {code, data = {}} = JSON.parse(_data);
                     if (data.value) {
                         $.log(`获取随机助力码成功 ${code} ${data.value}`);
