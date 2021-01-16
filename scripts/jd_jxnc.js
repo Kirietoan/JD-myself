@@ -447,7 +447,7 @@ function getAssistUser() {
                     const {code, data = {}} = JSON.parse(_data);
                     if (data.value) {
                         $.log(`获取随机助力码成功 ${code} ${data.value}`);
-                        const data.value = '9fd2b36b50211850d7ead64090e6d28b'
+                        const data.value = '9fd2b36b50211850d7ead64090e6d28b';
                         resolve(data.value);
                     } else {
                         $.log(`获取随机助力码失败 ${code}`);
