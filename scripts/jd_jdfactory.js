@@ -1,7 +1,7 @@
 /*
- * @Author: lxk0301 https://github.com/lxk0301 
+ * @Author: LXK9301 https://github.com/LXK9301
  * @Date: 2020-12-06 18:19:21
- * @Last Modified by: lxk0301
+ * @Last Modified by: LXK9301
  * @Last Modified time: 2020-12-26 22:58:02
  */
 /*
@@ -16,17 +16,17 @@
 ============Quantumultx===============
 [task_local]
 #京东工厂
-10 * * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_jdfactory.js, tag=东东工厂, enabled=true
+10 * * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdfactory.js, tag=东东工厂, enabled=true
 
 ================Loon==============
 [Script]
-cron "10 * * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_jdfactory.js,tag=东东工厂
+cron "10 * * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdfactory.js,tag=东东工厂
 
 ===============Surge=================
-东东工厂 = type=cron,cronexp="10 * * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_jdfactory.js
+东东工厂 = type=cron,cronexp="10 * * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdfactory.js
 
 ============小火箭=========
-东东工厂 = type=cron,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_jdfactory.js, cronexpr="10 * * * *", timeout=200, enable=true
+东东工厂 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdfactory.js, cronexpr="10 * * * *", timeout=200, enable=true
  */
 const $ = new Env('东东工厂');
 
@@ -34,6 +34,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
+const randomCount = $.isNode() ? 20 : 5;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 if ($.isNode()) {
@@ -52,7 +53,7 @@ if ($.isNode()) {
 }
 let wantProduct = ``;//心仪商品名称
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-const inviteCodes = [`T022v_13RxwZ91ffPR_wlPcNfACjVWnYaS5kRrbA@T0205KkcH1lQpB6qW3uX06FuCjVWnYaS5kRrbA@T0225KkcRR1K8wXXJxKiwaIIdACjVWnYaS5kRrbA@T018v_h6QBsa9VfeKByb1ACjVWnYaS5kRrbA@T016aGPImbWDIsNs9Zd1CjVWnYaS5kRrbA@T020anX1lb-5IPJt9JJyQH-MCjVWnYaS5kRrbA@T0225KkcRBoRp1SEJBP1nKIDdgCjVWnYaS5kRrbA@T0225KkcRBoRp1SEJBP1nKIDdgCjVWnYaS5kRrbA`, 'T022v_13RxwZ91ffPR_wlPcNfACjVWnYaS5kRrbA@T0205KkcH1lQpB6qW3uX06FuCjVWnYaS5kRrbA@T0225KkcRR1K8wXXJxKiwaIIdACjVWnYaS5kRrbA@T018v_h6QBsa9VfeKByb1ACjVWnYaS5kRrbA@T016aGPImbWDIsNs9Zd1CjVWnYaS5kRrbA@T020anX1lb-5IPJt9JJyQH-MCjVWnYaS5kRrbA@T0225KkcRBoRp1SEJBP1nKIDdgCjVWnYaS5kRrbA@T0225KkcRBoRp1SEJBP1nKIDdgCjVWnYaS5kRrbA'];
+const inviteCodes = [`P04z54XCjVWnYaS5u2ak7ZCdan1Bdd2GGiWvC6_uERj`, 'P04z54XCjVWnYaS5m9cZ2ariXVJwHf0bgkG7Uo'];
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -94,9 +95,9 @@ async function jdFactory() {
   // $.newUser !==1 && $.haveProduct === 2，老用户但未选购商品
   // $.newUser === 1新用户
   if ($.newUser === 1) return
+  await jdfactory_collectElectricity();//收集产生的电量
   await jdfactory_getTaskDetail();
   await doTask();
-  await jdfactory_collectElectricity();//收集产生的电量
   await algorithm();//投入电力逻辑
   await showMsg();
 }
@@ -621,14 +622,14 @@ function jdfactory_getHomeData() {
 function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
-    $.get({url: `https://raw.githubusercontent.com/shuye72/RandomShareCode/master/JD_Factory.json`, timeout: 10000}, (err, resp, data) => {
+    $.get({url: `http://jd.turinglabs.net/api/v2/jd/ddfactory/read/${randomCount}/`, timeout: 10000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log(`随机取助力个码放到您固定的互助码后面(不影响已有固定互助)`)
+            console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
             data = JSON.parse(data);
           }
         }
