@@ -94,9 +94,9 @@ async function jdFactory() {
   // $.newUser !==1 && $.haveProduct === 2，老用户但未选购商品
   // $.newUser === 1新用户
   if ($.newUser === 1) return
-  await jdfactory_collectElectricity();//收集产生的电量
   await jdfactory_getTaskDetail();
   await doTask();
+  await jdfactory_collectElectricity();//收集产生的电量
   await algorithm();//投入电力逻辑
   await showMsg();
 }
