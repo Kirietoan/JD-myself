@@ -1,5 +1,5 @@
 # File: .github/workflows/repo-sync.yml
-name: Automatic synchronization
+name: 自动同步
 on:
   schedule:
     - cron: '0 4,16  * * *'
@@ -7,7 +7,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: Automatic synchronization
+    types: repo-sync
 jobs:
   repo-sync:
     env:
@@ -20,7 +20,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: 开始Automatic synchronization
+      - name: 开始A自动同步
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
