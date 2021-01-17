@@ -7,7 +7,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: sync-shuye72-scripts
+    types: 自动同步
 jobs:
   repo-sync:
     env:
