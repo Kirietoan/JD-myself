@@ -2,7 +2,7 @@
 name: Automatic synchronization
 on:
   schedule:
-    - cron: '0 0 4,10,16 * * *'
+    - cron: '0 0 4,16 * * *'
   workflow_dispatch:
   watch:
     types: started
