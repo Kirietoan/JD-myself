@@ -1,6 +1,6 @@
 /*
-种豆得豆 脚本更新地址：https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_plantBean.js
-更新时间：2020-12-31
+种豆得豆 脚本更新地址：https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_plantBean.js
+更新时间：2021-1-18
 已支持IOS京东双账号,云端N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 注：会自动关注任务中的店铺跟商品，介意者勿使用。
