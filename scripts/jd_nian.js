@@ -237,7 +237,7 @@ function getHomeData(info=false) {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           data = JSON.parse(data);
-          if (data && data.data['bizCode'] === 0) {
+          if (data.data && data.data['bizCode'] === 0) {
             $.userInfo = data.data.result.homeMainInfo
             $.secretp = $.userInfo.secretp;
             if(!$.secretp){
