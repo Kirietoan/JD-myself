@@ -235,7 +235,6 @@ async function downloader_user_agents() {
 async function download(url, path, target) {
     let response = await axios.get(url);
     let fcontent = response.data;
-    if(process.env.REPOURL) fcontent = fcontent.replace('GITHUB','DONOTUSEACTION');
     await fs.writeFileSync(path, fcontent, "utf8");
     console.log(`下载${target}完毕`);
 }
