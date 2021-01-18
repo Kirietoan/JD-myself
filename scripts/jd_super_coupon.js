@@ -146,7 +146,7 @@ function getInfo() {
         } else {
           if (data) {
             data = JSON.parse(data);
-            let beanFloor = ['00854003', '00848083', '00852224', '00851782']
+            let beanFloor = ['', '', '', '']
             for (let floor of data.floorList) {
               if (floor['adsList'] && beanFloor.includes(floor['adsList'][0]['name'])) {
                 await getHomeData(floor['adsList'][0]['name'])
