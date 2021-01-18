@@ -253,7 +253,7 @@ async function helpFriendsFeed() {
 function getFriends(currentPage = '1') {
   return new Promise(resolve => {
     const options = {
-      url: `${JD_API_HOST}/getFriends?itemsPerPage=20&currentPage=${currentPage}`,
+      url: `${JD_API_HOST}/getFriends?itemsPerPage=20&currentPage=${currentPage * 1}&reqSource=h5`,
       headers: {
         'Cookie': cookie,
         'reqSource': 'h5',
@@ -265,6 +265,8 @@ function getFriends(currentPage = '1') {
         'Accept-Language': 'zh-cn',
         'Accept-Encoding': 'gzip, deflate, br',
       }
+      },
+      setTimeout: 10000
     }
     $.get(options, (err, resp, data) => {
       try {
