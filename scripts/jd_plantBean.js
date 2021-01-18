@@ -42,6 +42,7 @@ let currentRoundId = null;//本期活动id
 let lastRoundId = null;//上期id
 let roundList = [];
 let awardState = '';//上期活动的京豆是否收取
+let randomCount = $.isNode() ? 20 : 5;
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -82,7 +83,7 @@ let awardState = '';//上期活动的京豆是否收取
 async function jdPlantBean() {
   console.log(`获取任务及基本信息`)
   await plantBeanIndex();
-   console.log(plantBeanIndexResult.data);
+  // console.log(plantBeanIndexResult.data.taskList);
   if ($.plantBeanIndexResult.code === '0') {
     const shareUrl = $.plantBeanIndexResult.data.jwordShareInfo.shareUrl
     $.myPlantUuid = getParam(shareUrl, 'plantUuid')
