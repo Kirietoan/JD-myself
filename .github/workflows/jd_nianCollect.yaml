@@ -5,8 +5,8 @@ name: 京东炸年兽领爆竹
 
 on:
     workflow_dispatch:
-    #schedule:
-        #- cron: "40 * * * *"
+    schedule:
+        - cron: "40 * * * *"
     watch:
         types: [started]
     repository_dispatch:
