@@ -80,7 +80,7 @@ function ignore_jd() {
     // 京东种豆得豆禁用部分Cookie，以避免黑号报错跳出的
     if (process.env.IGNORE_COOKIE_ZDDD) {
         try {
-            var ignore_indexs = JSON.parse(process.env.IGNORE_COOKIE_JXGC);
+            var ignore_indexs = JSON.parse(process.env.IGNORE_COOKIE_ZDDD);
             var ignore_names = [];
             ignore_indexs.forEach((it) => {
                 if (it == 1) {
