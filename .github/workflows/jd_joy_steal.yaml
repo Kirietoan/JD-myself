@@ -6,7 +6,7 @@ name: 京东宠汪汪偷好友狗粮和积分
 on:
     workflow_dispatch:
     schedule:
-        - cron: "0 4,22 * * *"
+        - cron: "0 0-16/24 * * *"
     watch:
         types: [started]
     repository_dispatch:
