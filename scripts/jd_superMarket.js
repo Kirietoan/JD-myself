@@ -320,27 +320,7 @@ async function businessCircleActivity() {
       if ($.updatePkActivityIdRes && ($.updatePkActivityIdRes.pkActivityId === pkActivityId)) {
         let Teams = [
           {
-            "teamId": "-4msulYas0O2JsRhE-2TA5XZmBQ_1604247312176",
-            "inviteCode": "Ihsza-6yZP8u7GvRy3MU3g"
-          },
-          {
-            "teamId": "Ih4-a-mwZPUj9Gy6iw_1604277683224",
-            "inviteCode": "Ihsza-6yZP8u7GvRy3MU3g"
-          },
-          {
-            "teamId": "eU9Ya77gZK5z-TqHn3UWhQ_1604277779750",
-            "inviteCode": "Ihsza-6yZP8u7GvRy3MU3g"
-          },
-          {
-            "teamId": "eU9Ya-y2N_5z9DvXwyIV0A",
-            "inviteCode": "Ihsza-6yZP8u7GvRy3MU3g"
-          },
-          {
-            "teamId": "eU9Ya-y2N_5z9DvXwyIV0A",
-            "inviteCode": "Ihsza-6yZP8u7GvRy3MU3g"
-          },
-          {
-            "teamId": "eU9Ya-y2N_5z9DvXwyIV0A",
+            "teamId": "Ihsza-6yZP8u7GvRy3MU3g_1611019791103",
             "inviteCode": "Ihsza-6yZP8u7GvRy3MU3g"
           }
         ]
