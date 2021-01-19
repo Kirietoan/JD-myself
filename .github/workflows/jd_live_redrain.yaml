@@ -26,7 +26,7 @@ jobs:
             - name: 安装依赖包
               run: |
                   npm install
-            - name: "运行【京东炸年兽】"
+            - name: "运行【超级直播间红包雨】"
               run: |
                   node onlyOneExecute.js
               env:
