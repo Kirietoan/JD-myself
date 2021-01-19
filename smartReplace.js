@@ -158,9 +158,7 @@ function ignore_jd() {
             });
             replacements.push({
                 key: "cookiesArr.push(jdCookieNode[item])",
-                value: `if (jdCookieNode[item] && ${JSON.stringify(
-                    ignore_names
-                )}.indexOf(item) == -1) cookiesArr.push(jdCookieNode[item])`,
+                value: `if (jdCookieNode[item] && ${JSON.stringify(ignore_names)}.indexOf(item) == -1) cookiesArr.push(jdCookieNode[item])`,
             });
             console.log(`IGNORE_COOKIE_JDGC已生效，将为您禁用${ignore_names}`);
         } catch (e) {
