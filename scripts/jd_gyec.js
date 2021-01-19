@@ -407,9 +407,11 @@ async function beginLevel() {
                 await $.wait(30000)
                 await endLevel()
               } else if (data.code === 20001) {
+                $.strength = 0
                 console.log(`关卡开启失败，体力不足`)
               } else {
-                console.log(`关卡开启失败，错误信息：${JSON.stringify(data)}`)
+	            $.strength = 0
+                // console.log(`关卡开启失败，未知错误`)
               }
             }
           }
