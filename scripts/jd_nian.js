@@ -85,14 +85,26 @@ const inviteCodes = [
       $.done();
     })
 async function jdNian() {
-  await getHomeData()
-  if(!$.secretp) return
-  await getTaskList()
-  await $.wait(1000)
-  await doTask()
-  await helpFriends()
-  await getHomeData(true)
-  await showMsg()
+  try {
+    await getHomeData()
+    if(!$.secretp) return
+    await $.wait(2000)
+    await killCouponList()
+    await $.wait(2000)
+    await map()
+    await $.wait(2000)
+    await queryMaterials()
+    await getTaskList()
+    await $.wait(1000)
+    await doTask()
+    await $.wait(2000)
+    await helpFriends()
+    await $.wait(2000)
+    await getHomeData(true)
+    await showMsg()
+  } catch (e) {
+    $.logErr(e)
+  }
 }
 function encode(data, aa, extraData) {
   const temp = {
@@ -108,6 +120,7 @@ function getRnd() {
 function showMsg() {
   return new Promise(resolve => {
     console.log('任务已做完！\n如有未完成的任务，请多执行几次。注：目前入会任务不会做')
+    console.log('如出现taskVos错误的，请更新USER_AGENTS.js或使用自定义UA功能')
     if (!jdNotify) {
       $.msg($.name, '', `${message}`);
     } else {
@@ -237,7 +250,7 @@ function getHomeData(info=false) {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           data = JSON.parse(data);
-          if (data.data && data.data['bizCode'] === 0) {
+          if (data && data.data['bizCode'] === 0) {
             $.userInfo = data.data.result.homeMainInfo
             $.secretp = $.userInfo.secretp;
             if(!$.secretp){
@@ -261,6 +274,11 @@ function getHomeData(info=false) {
               await $.wait(2000)
               await raise()
             }
+          }
+          else{
+            $.secretp = null
+            console.log(`账号被风控，无法参与活动`)
+            message += `账号被风控，无法参与活动\n`
           }
         }
       } catch (e) {
@@ -308,7 +326,7 @@ function collectProduceScore(taskId= "collectProducedCoin") {
     })
   })
 }
-function collectScore(taskId,itemId,actionType,inviteId) {
+function collectScore(taskId,itemId,actionType=null,inviteId=null,shopSign=null) {
   let temp = {
     "taskId": taskId,
     "rnd": getRnd(),
@@ -318,6 +336,7 @@ function collectScore(taskId,itemId,actionType,inviteId) {
   if(itemId) temp['itemId'] = itemId
   if(actionType) temp['actionType'] = actionType
   if(inviteId) temp['inviteId'] = inviteId
+  if(shopSign) temp['shopSign'] = shopSign
   const extraData = {
     "jj": 6,
     "buttonid": "jmdd-react-smash_0",
@@ -331,6 +350,7 @@ function collectScore(taskId,itemId,actionType,inviteId) {
   }
   if(actionType) body['actionType'] = actionType
   if(inviteId) body['inviteId'] = inviteId
+  if(shopSign) body['shopSign'] = shopSign
   return new Promise(resolve => {
     $.post(taskPostUrl("nian_collectScore", body, "nian_collectScore"), async (err, resp, data) => {
       try {
@@ -340,22 +360,24 @@ function collectScore(taskId,itemId,actionType,inviteId) {
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
-            if (data.data.bizCode === 0) {
-              if(data.data.result.score)
-                console.log(`任务完成，获得${data.data.result.score}爆竹`)
-              else if(data.data.result.maxAssistTimes) {
-                console.log(`助力好友成功`)
-              } else{
-                console.log(`任务上报成功`)
-                await $.wait(10*1000)
-                if(data.data.result.taskToken){
-                  await doTask2(data.data.result.taskToken)
+            if (data.code === 0) {
+              if (data.data && data.data.bizCode === 0) {
+                if(data.data.result.score)
+                  console.log(`任务完成，获得${data.data.result.score}爆竹🧨`)
+                else if(data.data.result.maxAssistTimes) {
+                  console.log(`助力好友成功`)
+                } else{
+                  console.log(`任务上报成功`)
+                  await $.wait(10*1000)
+                  if(data.data.result.taskToken){
+                    await doTask2(data.data.result.taskToken)
+                  }
                 }
+                // $.userInfo = data.data.result.userInfo;
               }
-              // $.userInfo = data.data.result.userInfo;
-            }
-            else{
-              console.log(data.data.bizMsg)
+              else{
+                console.log(data.data.bizMsg)
+              }
             }
           }
         }
@@ -469,13 +491,326 @@ function getFriendData(inviteId) {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           data = JSON.parse(data);
-          if (data && data.data['bizCode'] === 0) {
+          if (data.data && data.data['bizCode'] === 0) {
             $.itemId = data.data.result.homeMainInfo.guestInfo.itemId
             await collectScore('2',$.itemId,null,inviteId)
           }
         }
       } catch (e) {
         $.logErr(e, resp);
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
+function map() {
+  return new Promise(resolve => {
+    $.post(taskPostUrl("nian_myMap", {}, "nian_myMap"), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            if (data.data.bizCode === 0) {
+              let msg = '当前已开启的地图：'
+              for(let vo of data.data.result.monsterInfoList){
+                if(vo.curLevel) msg+= vo.name +' '
+              }
+              console.log(msg)
+              // $.userInfo = data.data.result.userInfo;
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
+function queryMaterials() {
+  let body = {"qryParam":"[{\"type\":\"advertGroup\",\"mapTo\":\"viewLogo\",\"id\":\"05149412\"},{\"type\":\"advertGroup\",\"mapTo\":\"bottomLogo\",\"id\":\"05149413\"}]","activityId":"2cKMj86srRdhgWcKonfExzK4ZMBy","pageId":"","reqSrc":"","applyKey":"21beast"}
+  return new Promise(resolve => {
+    $.post(taskPostUrl("qryCompositeMaterials", body, "qryCompositeMaterials"), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            if(data.code==='0') {
+              let shopList = data.data.viewLogo.list.concat(data.data.bottomLogo.list)
+              let nameList = []
+              for(let vo of shopList){
+                if(nameList.includes(vo.name)) continue
+                nameList.push(vo.name)
+                console.log(`去做${vo.name}店铺任务`)
+                await shopLotteryInfo(vo.desc)
+                await $.wait(2000)
+              }
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
+
+function shopLotteryInfo(shopSign) {
+  let body = {"shopSign":shopSign}
+  return new Promise(resolve => {
+    $.post(taskPostUrl("nian_shopLotteryInfo", body, "nian_shopLotteryInfo"), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            if(data.code===0) {
+              for(let vo of data.data.result.taskVos){
+                if(vo.status===1){
+                  if(vo.taskType===12){
+                    console.log(`去做${vo.taskName}任务`)
+                    await $.wait(2000)
+                    await collectScore(vo.taskId,vo.simpleRecordInfoVo.itemId,null,null,shopSign)
+                  }
+                  else if (vo.taskType === 3 || vo.taskType === 26) {
+                    if(vo.shoppingActivityVos) {
+                      if (vo.status === 1) {
+                        console.log(`准备做此任务：${vo.taskName}`)
+                        for (let task of vo.shoppingActivityVos) {
+                          if (task.status === 1) {
+                            await $.wait(2000)
+                            await collectScore(vo.taskId, task.advId,null,null,shopSign);
+                          }
+                        }
+                      } else if (vo.status === 2) {
+                        console.log(`${vo.taskName}已做完`)
+                      }
+                    }
+                  }
+                }
+              }
+              for(let i=0;i<data.data.result.lotteryNum;++i){
+                console.log(`去抽奖：${i+1}/${data.data.result.lotteryNum}`)
+                await $.wait(2000)
+                await doShopLottery(shopSign)
+              }
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
+function doShopLottery(shopSign) {
+  let body = {"shopSign":shopSign}
+  return new Promise(resolve => {
+    $.post(taskPostUrl("nian_doShopLottery", body, "nian_doShopLottery"), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            if(data.code===0 && data.data && data.data.result) {
+              let result = data.data.result
+              if(result.awardType===4)
+                console.log(`抽奖成功，获得${result.score}爆竹🧨`)
+              else if(result.awardType===2 || result.awardType===3)
+                console.log(`抽奖成功，获得优惠卷`)
+              else
+                console.log(`抽奖成功，获得${JSON.stringify(result)}`)
+            }else{
+              console.log(`抽奖失败`)
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
+
+function pkInfo() {
+  return new Promise(resolve => {
+    $.post(taskPostUrl("nian_pk_getHomeData", {}, "nian_pk_getHomeData"), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            console.log(data)
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
+function pkCollectScore() {
+  return new Promise(resolve => {
+    $.post(taskPostUrl("nian_pk_collectScore", {}, "nian_pk_collectScore"), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            console.log(data)
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
+function pkTaskDetail() {
+  return new Promise(resolve => {
+    $.post(taskPostUrl("nian_pk_getTaskDetail", {}, "nian_pk_getTaskDetail"), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            console.log(data)
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
+function pkAssignGroup(inviteId) {
+  let temp = {
+    "confirmFlag": 1,
+    "inviteId": inviteId,
+  }
+  const extraData = {
+    "jj": 6,
+    "buttonid": "jmdd-react-smash_0",
+    "sceneid": "homePageh5",
+    "appid": '50073'
+  }
+  let body = {
+    ...encode(temp, $.secretp, extraData),
+    inviteId:inviteId
+  }
+  return new Promise(resolve => {
+    $.post(taskPostUrl("nian_pk_assistGroup", body, "nian_pk_assistGroup"), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            console.log(data)
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
+function killCouponList() {
+  return new Promise(resolve => {
+    $.post(taskPostUrl("nian_killCouponList", {}, "nian_killCouponList"), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            if (data.data && data.data.bizCode === 0) {
+              await $.wait(2000)
+              for(let vo of data.data.result){
+                if(!vo.status){
+                  console.log(`去领取${vo['productName']}优惠券`)
+                  await killCoupon(vo['skuId'])
+                  await $.wait(2000)
+                }
+              }
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
+function killCoupon(skuId) {
+  let temp = {
+    "skuId": skuId,
+    "rnd": getRnd(),
+    "inviteId": "-1",
+    "stealId": "-1"
+  }
+  const extraData = {
+    "jj": 6,
+    "buttonid": "jmdd-react-smash_0",
+    "sceneid": "homePageh5",
+    "appid": '50073'
+  }
+  let body = encode(temp, $.secretp, extraData);
+  body['skuId'] = skuId
+  return new Promise(resolve => {
+    $.post(taskPostUrl("nian_killCoupon", body, "nian_killCoupon"), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            if (data.data && data.data.bizCode === 0) {
+              console.log(`领取成功，获得${data.data.result.score}爆竹🧨`)
+            }else{
+              console.log(data.data.bizMsg)
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
       } finally {
         resolve();
       }
