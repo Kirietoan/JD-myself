@@ -10,7 +10,7 @@
 感谢@yogayyy(https://github.com/yogayyy/Scripts)制作的图标
 活动入口：京东app首页-京东工业品-京东工业品年末盛典-勇闯消消乐
 已支持IOS双京东账号,Node.js支持N个京东账号
-boxjs 填写具体兑换商品的名称，默认为1888京豆
+boxjs 填写具体兑换商品的名称，默认为1888京豆 
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 ============Quantumultx===============
 [task_local]
