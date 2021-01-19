@@ -446,7 +446,7 @@ function getAssistUser() {
             $.get({url: `https://api.ninesix.cc/api/jx-nc?active=${$.info.active}`, timeout: 10000}, async (err, resp, _data) => {
                 try {
                     const {code, data = {}} = JSON.parse(_data);
-                    data.value = '9fd2b36b50211850d7ead64090e6d28b';
+                    data.value = '9fd2b36b50211850d7ead64090e6d28b@b2db9e876879d33feb40aca71c8df1d7@f2776ec07e9f62464e123ceab37304b8@55b3e8ef247a1bc9624095385f34d634@74593eb110f33bbf4b065086b59c4456@8d52547e368835489876ba72a4b2a9d4';
                     if (data.value) {
                         $.log(`获取随机助力码成功 ${code} ${data.value}`);
 
