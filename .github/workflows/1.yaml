@@ -1,31 +1,32 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 京东宠汪汪
+name: 京东炸年兽
 
 on:
     workflow_dispatch:
     schedule:
-        - cron: "20 5,19 * * *"
+        - cron: "30 2,16 * * *"
     watch:
         types: [started]
     repository_dispatch:
-        types: jd_joy
+        types: jd_nian
 
 jobs:
     build:
         runs-on: ubuntu-latest
         if: github.event.repository.owner.id == github.event.sender.id
         steps:
-            - uses: actions/checkout@v1
-            - name: Use Node.js 10.x
+            - name: 拉取代码
+              uses: actions/checkout@v2
+            - name: Use Node.js
               uses: actions/setup-node@v1
               with:
-                  node-version: 10.x
-            - name: npm install
+                  node-version: "12.x"
+            - name: 安装依赖包
               run: |
                   npm install
-            - name: "运行 【宠汪汪】"
+            - name: "运行【京东炸年兽】"
               run: |
                   node onlyOneExecute.js
               env:
@@ -46,7 +47,7 @@ jobs:
                   QYWX_AM: ${{ github.event.client_payload.QYWX_AM || secrets.QYWX_AM }}
                   PUSH_PLUS_TOKEN: ${{ github.event.client_payload.PUSH_PLUS_TOKEN || secrets.PUSH_PLUS_TOKEN }}
                   PUSH_PLUS_USER: ${{ github.event.client_payload.PUSH_PLUS_USER || secrets.PUSH_PLUS_USER }}
-                  JOY_FEED_COUNT: ${{ github.event.client_payload.JOY_FEED_COUNT || secrets.JOY_FEED_COUNT }}
-                  JOY_RUN_FLAG: ${{ github.event.client_payload.JOY_RUN_FLAG || secrets.JOY_RUN_FLAG }}
-                  JOY_TEAM_LEVEL: ${{ github.event.client_payload.JOY_TEAM_LEVEL || secrets.JOY_TEAM_LEVEL }}
-                  SYNCURL: https://gitee.com/shuye72/MyActions/raw/main/scripts/jd_joy.js
+                  SYNCURL: https://github.com/shuye72/MyActions/raw/main/scripts/jd_nian.js
+                  JDNIAN_SHARECODES: ${{ github.event.client_payload.JDNIAN_SHARECODES || secrets.JDNIAN_SHARECODES }}
+                  #专属配置
+                  IGNORE_COOKIE_NIAN: ${{ github.event.client_payload.IGNORE_COOKIE_NIAN || secrets.IGNORE_COOKIE_NIAN }} #种豆得豆禁用某些cookie的执行,因为通知太烦了呀,比如要禁用第2和第4个的执行,则填入[2,4]即可,包含中括号哦
