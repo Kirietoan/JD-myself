@@ -313,8 +313,8 @@ async function businessCircleActivity() {
     if (joinStatus === 0) {
       console.log(`\n注：PK会在每天的七点自动随机加入LXK9301创建的队伍\n`)
       await updatePkActivityId();
-      if (!$.updatePkActivityIdRes) await updatePkActivityIdCDN('https://gitee.com/shuye72/updateTeam/raw/master/jd_updateTeam.json');
-      if (!$.updatePkActivityIdRes) await updatePkActivityIdCDN('https://cdn.jsdelivr.net/gh/shuye72/updateTeam@master/jd_updateTeam.json');
+      if (!$.updatePkActivityIdRes) await updatePkActivityIdCDN('https://gitee.com/shuye72/updateSupermarketTeam/raw/master/jd_updateTeam.json');
+      if (!$.updatePkActivityIdRes) await updatePkActivityIdCDN('https://cdn.jsdelivr.net/gh/shuye72/updateSupermarketTeam@master/jd_updateTeam.json');
       console.log(`\nupdatePkActivityId[pkActivityId]:::${$.updatePkActivityIdRes.pkActivityId}`);
       console.log(`\n京东服务器返回的[pkActivityId] ${pkActivityId}`);
       if ($.updatePkActivityIdRes && ($.updatePkActivityIdRes.pkActivityId === pkActivityId)) {
