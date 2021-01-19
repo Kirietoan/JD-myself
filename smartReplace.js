@@ -70,13 +70,32 @@ function ignore_jd() {
             });
             replacements.push({
                 key: "cookiesArr.push(jdCookieNode[item])",
-                value: `if (jdCookieNode[item] && ${JSON.stringify(
-                    ignore_names
-                )}.indexOf(item) == -1) cookiesArr.push(jdCookieNode[item])`,
+                value: `if (jdCookieNode[item] && ${JSON.stringify(ignore_names)}.indexOf(item) == -1) cookiesArr.push(jdCookieNode[item])`,
             });
-            console.log(`IGNORE_COOKIE_JXNC已生效，将为您禁用${ignore_names}`);
+            console.log(`IGNORE_COOKIE_JXGC已生效，将为您禁用${ignore_names}`);
         } catch (e) {
-            console.log("IGNORE_COOKIE_JXNC填写有误,不禁用任何Cookie");
+            console.log("IGNORE_COOKIE_JXGC填写有误,不禁用任何Cookie");
+        }
+    }
+    // 京东种豆得豆禁用部分Cookie，以避免黑号报错跳出的
+    if (process.env.IGNORE_COOKIE_ZDDD) {
+        try {
+            var ignore_indexs = JSON.parse(process.env.IGNORE_COOKIE_JXGC);
+            var ignore_names = [];
+            ignore_indexs.forEach((it) => {
+                if (it == 1) {
+                    ignore_names.push("CookieJD");
+                } else {
+                    ignore_names.push("CookieJD" + it);
+                }
+            });
+            replacements.push({
+                key: "cookiesArr.push(jdCookieNode[item])",
+                value: `if (jdCookieNode[item] && ${JSON.stringify(ignore_names)}.indexOf(item) == -1) cookiesArr.push(jdCookieNode[item])`,
+            });
+            console.log(`IGNORE_COOKIE_ZDDD已生效，将为您禁用${ignore_names}`);
+        } catch (e) {
+            console.log("IGNORE_COOKIE_ZDDD填写有误,不禁用任何Cookie");
         }
     }
     // 口袋书店禁用部分Cookie
