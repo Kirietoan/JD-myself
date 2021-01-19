@@ -99,9 +99,9 @@ function ignore_jd() {
         }
     }
     // 口袋书店禁用部分Cookie
-    if (process.env.IGNORE_COOKIE_BOOKSHOP) {
+    if (process.env.IGNORE_COOKIE_NIAN) {
         try {
-            var ignore_indexs = JSON.parse(process.env.IGNORE_COOKIE_BOOKSHOP);
+            var ignore_indexs = JSON.parse(process.env.IGNORE_COOKIE_NIAN);
             var ignore_names = [];
             ignore_indexs.forEach((it) => {
                 if (it == 1) {
@@ -116,9 +116,9 @@ function ignore_jd() {
                     ignore_names
                 )}.indexOf(item) == -1) cookiesArr.push(jdCookieNode[item])`,
             });
-            console.log(`IGNORE_COOKIE_BOOKSHOP已生效，将为您禁用${ignore_names}`);
+            console.log(`IGNORE_COOKIE_NIAN已生效，将为您禁用${ignore_names}`);
         } catch (e) {
-            console.log("IGNORE_COOKIE_BOOKSHOP填写有误,不禁用任何Cookie");
+            console.log("IGNORE_COOKIE_NIAN填写有误,不禁用任何Cookie");
         }
     }
     // 京东农场禁用部分Cookie
