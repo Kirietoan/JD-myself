@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 京东炸年兽
+name: jd_joy_run
 
 on:
     workflow_dispatch:
@@ -10,7 +10,7 @@ on:
     watch:
         types: [started]
     repository_dispatch:
-        types: jd_nian
+        types: jd_joy_run
 
 jobs:
     build:
@@ -26,7 +26,7 @@ jobs:
             - name: 安装依赖包
               run: |
                   npm install
-            - name: "运行【京东炸年兽】"
+            - name: "运行【jd_joy_run】"
               run: |
                   node onlyOneExecute.js
               env:
@@ -47,7 +47,4 @@ jobs:
                   QYWX_AM: ${{ github.event.client_payload.QYWX_AM || secrets.QYWX_AM }}
                   PUSH_PLUS_TOKEN: ${{ github.event.client_payload.PUSH_PLUS_TOKEN || secrets.PUSH_PLUS_TOKEN }}
                   PUSH_PLUS_USER: ${{ github.event.client_payload.PUSH_PLUS_USER || secrets.PUSH_PLUS_USER }}
-                  SYNCURL: https://github.com/shuye72/MyActions/raw/main/scripts/jd_nian.js
-                  JDNIAN_SHARECODES: ${{ github.event.client_payload.JDNIAN_SHARECODES || secrets.JDNIAN_SHARECODES }}
-                  #专属配置
-                  IGNORE_COOKIE_NIAN: ${{ github.event.client_payload.IGNORE_COOKIE_NIAN || secrets.IGNORE_COOKIE_NIAN }} #种豆得豆禁用某些cookie的执行,因为通知太烦了呀,比如要禁用第2和第4个的执行,则填入[2,4]即可,包含中括号哦
+                  SYNCURL: https://github.com/shuye72/MyActions/raw/main/scripts/joy_run.js
