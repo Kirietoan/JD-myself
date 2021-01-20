@@ -206,13 +206,13 @@ async function main() {
       console.log(`\n开始【京东账号${$.index}】${UserName}\n`);
       $.jdLogin = true;
       $.LKYLLogin = true;
-      console.log(`=============【开始邀请助力】===============`)
+      console.log(`=============【开始】===============`)
       const inviteIndex = $.index > invite_pins.length ? (invite_pins.length - 1) : ($.index - 1);
       let new_invite_pins = invite_pins[inviteIndex].split(',');
       new_invite_pins = [...new_invite_pins, ...getRandomArrayElements(friendsArr, 6)];
       await invite(new_invite_pins);
       if ($.jdLogin && $.LKYLLogin) {
-        console.log(`===========【开始助力好友赛跑】===========`)
+        console.log(`===========【开始】===========`)
         const runIndex = $.index > run_pins.length ? (run_pins.length - 1) : ($.index - 1);
         const new_run_pins = run_pins[runIndex].split(',');
         await run(new_run_pins);
@@ -227,10 +227,10 @@ function showMsg() {
     if ($.inviteReward || $.runReward) {
       let message = '';
       if ($.inviteReward > 0) {
-        message += `给${$.inviteReward / 30}人邀请助力成功,获得${$.inviteReward}积分\n`;
+        message += `获得${$.inviteReward}积分\n`;
       }
       if ($.runReward > 0) {
-        message += `给${$.runReward / 5}人赛跑助力成功,获得狗粮${$.runReward}g`;
+        message += `获得狗粮${$.runReward}g`;
       }
       if (message) {
         $.msg($.name, '', `京东账号${$.index} ${UserName}\n${message}`);
@@ -241,25 +241,18 @@ function showMsg() {
 }
 //邀请助力
 async function invite(invite_pins) {
-  console.log(`账号${$.index} [${UserName}] 给下面名单的人进行邀请助力\n${invite_pins.map(item => item.trim())}\n`);
   for (let item of invite_pins.map(item => item.trim())) {
-    console.log(`\n账号${$.index} [${UserName}] 开始给好友 [${item}] 进行邀请助力`)
     const data = await enterRoom(item);
     if (data) {
       if (data.success) {
         const { helpStatus } = data.data;
-        console.log(`helpStatus ${helpStatus}`)
         if (helpStatus=== 'help_full') {
-          console.log(`您的邀请助力机会已耗尽\n`)
           break;
         } else if (helpStatus=== 'cannot_help') {
-          console.log(`已给该好友 ${item} 助力过或者此friendPin是你自己\n`)
           continue;
         } else if (helpStatus=== 'invite_full') {
-          console.log(`助力失败，该好友 ${item} 已经满3人给他助力了,无需您再次助力\n`)
           continue;
         } else if (helpStatus=== 'can_help') {
-          console.log(`开始给好友 ${item} 助力\n`)
           const LKYL_DATA = await helpInviteFriend(item);
           if (LKYL_DATA.errorCode === 'L0001' && !LKYL_DATA.success) {
             console.log('来客有礼宠汪汪token失效');

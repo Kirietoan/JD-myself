@@ -1,12 +1,12 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 2宠汪汪
+name: 宠汪汪(需要提交token，不提交无视即可)
 
 on:
     workflow_dispatch:
     schedule:
-        - cron: "30 2,16 * * *"
+        - cron: "15 */1 * * *"
     watch:
         types: [started]
     repository_dispatch:
@@ -26,7 +26,7 @@ jobs:
             - name: 安装依赖包
               run: |
                   npm install
-            - name: "运行【2宠汪汪】"
+            - name: "运行【宠汪汪run】"
               run: |
                   node onlyOneExecute.js
               env:
