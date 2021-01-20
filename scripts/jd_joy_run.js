@@ -113,7 +113,7 @@ async function getToken() {
   if (isURL(url, /^https:\/\/draw\.jdfcloud\.com(\/mirror)?\/\/api\/user\/addUser\?code=/)) {
     const body = JSON.parse($response.body);
     const LKYLToken = body.data && body.data.token;
-    console.log(`${JSON.parse($response.body)}`)
+    console.log(${$.LKYLToken})
     if (LKYLToken) {
       $.log(`${$.name} token\n${LKYLToken}\n`);
       count = $.getdata('countFlag') ? $.getdata('countFlag') * 1 : 0;
