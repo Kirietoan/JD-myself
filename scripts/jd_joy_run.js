@@ -337,17 +337,13 @@ function helpInviteFriend(friendPin) {
 }
 //赛跑助力
 async function run(run_pins) {
-  console.log(`账号${$.index} [${UserName}] 给下面名单的人进行赛跑助力\n${(run_pins.map(item => item.trim()))}\n`);
   for (let item of run_pins.map(item => item.trim())) {
-    console.log(`\n账号${$.index} [${UserName}] 开始给好友 [${item}] 进行赛跑助力`)
     const combatDetailRes = await combatDetail(item);
     const { petRaceResult } = combatDetailRes.data;
     console.log(`petRaceResult ${petRaceResult}`);
     if (petRaceResult === 'help_full') {
-      console.log('您的赛跑助力机会已耗尽');
       break;
     } else if (petRaceResult === 'can_help') {
-      console.log(`开始赛跑助力好友 ${item}`)
       const LKYL_DATA = await combatHelp(item);
       if (LKYL_DATA.errorCode === 'L0001' && !LKYL_DATA.success) {
         console.log('来客有礼宠汪汪token失效');
