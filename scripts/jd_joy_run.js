@@ -149,7 +149,7 @@ async function getToken() {
       //}
       $.setdata(LKYLToken, 'jdJoyRunToken');
 
-      $.msg($.name, '获取Token: 成功🎉', ``);
+      $.msg($.name, '获取Token: 成功🎉', `\n${LKYLToken}\`);
 
       // $.done({ body: JSON.stringify(body) })
       $.done({ url: url })
