@@ -19,10 +19,10 @@ boxjs IMMORTAL_LATLON
 cron "0 8 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_immortal.js,tag=京东神仙书院
 
 ===============Surge=================
-京东神仙书院 = type=cron,cronexp="0 8 * * *",wake-system=1,timeout=2000,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_immortal.js
+京东神仙书院 = type=cron,cronexp="0 8 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_immortal.js
 
 ============小火箭=========
-京东神仙书院 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_immortal.js, cronexpr="0 8 * * *", timeout=2000, enable=true
+京东神仙书院 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_immortal.js, cronexpr="0 8 * * *", timeout=3600, enable=true
  */
 const $ = new Env('京东神仙书院');
 
@@ -50,7 +50,7 @@ if ($.isNode()) {
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [
   `43xIs4YwE5Z7HhZ_xiV-vyF19lV9C5oaHM0Vht6OTiGIbwKsQWwUZTjT0bC3r8SRdilg@38xIs4YwE5Z7HhZph2WwPi-191mMKGXmSWGPHiiwQKsEbxkFQjz3w_Mk2XQ@35xIs4YwE5Z7G9J5WnWVQVRj_oxYuAv1asW4XA_VqpH-_JWKmo1sWb@40xIs4YwE5Z7G9g7RHXVX8gjz9HqGqGXOOA8qjiyV08_0yUE-XzWpgnsAdfE5Bm@43xIs4YwE5Z7DsWOzDSFf9KWdqggxkGFaEKBUkPAIDsX0ocZB9wkBb3T4rUbWouk6gXQ@43xIs4YwE5Z7DsWOzDSBaFTER5iWF2e4ZAaGy31ilnc6ygcZB9w0cAiW8U24Ei993Ffw`,
-  `43xIs4YwE5Z7HhZ_xiV-vyF19lV9C5oaHM0Vht6OTiGIbwKsQWwUZTjT0bC3r8SRdilg@38xIs4YwE5Z7HhZph2WwPi-191mMKGXmSWGPHiiwQKsEbxkFQjz3w_Mk2XQ@35xIs4YwE5Z7G9J5WnWVQVRj_oxYuAv1asW4XA_VqpH-_JWKmo1sWb@40xIs4YwE5Z7G9g7RHXVX8gjz9HqGqGXOOA8qjiyV08_0yUE-XzWpgnsAdfE5Bm@43xIs4YwE5Z7DsWOzDSFf9KWdqggxkGFaEKBUkPAIDsX0ocZB9wkBb3T4rUbWouk6gXQ@43xIs4YwE5Z7DsWOzDSBaFTER5iWF2e4ZAaGy31ilnc6ygcZB9w0cAiW8U24Ei993Ffw`
+  `43xIs4YwE5Z7HhZ_xiV-vyF19lV9C5oaHM0Vht6OTiGIbwKsQWwUZTjT0bC3r8SRdilg@38xIs4YwE5Z7HhZph2WwPi-191mMKGXmSWGPHiiwQKsEbxkFQjz3w_Mk2XQ@35xIs4YwE5Z7G9J5WnWVQVRj_oxYuAv1asW4XA_VqpH-_JWKmo1sWb@40xIs4YwE5Z7G9g7RHXVX8gjz9HqGqGXOOA8qjiyV08_0yUE-XzWpgnsAdfE5Bm@43xIs4YwE5Z7DsWOzDSFf9KWdqggxkGFaEKBUkPAIDsX0ocZB9wkBb3T4rUbWouk6gXQ@43xIs4YwE5Z7DsWOzDSBaFTER5iWF2e4ZAaGy31ilnc6ygcZB9w0cAiW8U24Ei993Ffw`,
 ];
 !(async () => {
   await requireConfig();
@@ -89,6 +89,7 @@ const inviteCodes = [
     })
 async function jdNian() {
   try {
+    $.risk = false
     await getHomeData()
     if($.risk) return
     await getTaskList($.cor)
@@ -303,7 +304,7 @@ function shareCodesFormat() {
       const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
       $.newShareCodes = inviteCodes[tempIndex].split('@');
     }
-    const readShareCodeRes = null // await readShareCode();
+    const readShareCodeRes = await readShareCode();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
     }
@@ -312,7 +313,7 @@ function shareCodesFormat() {
   })
 }
 function requireConfig() {
-  return new Promise(resolve => {
+  return new Promise(async resolve => {
     console.log(`开始获取${$.name}配置文件\n`);
     //Node.js用户请在jdCookie.js处填写京东ck;
     let shareCodes = []
@@ -331,7 +332,7 @@ function requireConfig() {
           $.shareCodesArr.push(shareCodes[item])
         }
       })
-      $.cor = process.env.JD_IMMORTAL_LATLON?JSON.parse(process.env.JD_IMMORTAL_LATLON):{}
+      $.cor = process.env.JD_IMMORTAL_LATLON?JSON.parse(process.env.JD_IMMORTAL_LATLON):(await getLatLng())
     }else{
       $.cor = $.getdata("IMMORTAL_LATLON")?JSON.parse($.getdata("IMMORTAL_LATLON")):{}
     }
@@ -339,6 +340,39 @@ function requireConfig() {
     console.log(`您提供了${$.shareCodesArr.length}个账号的${$.name}助力码\n`);
     resolve()
   })
+}
+
+// 自动获取经纬度
+function getLatLng() {
+  return new Promise(resolve => {
+    try {
+      console.log('开始自动获取经纬度 lat lng ……');
+      $.get({
+        url: 'https://jingweidu.bmcx.com/web_system/bmcx_com_www/system/file/jingweidu/api/?v=20031911',
+        headers: {
+          "referer": "https://jingweidu.bmcx.com/",
+          'Content-Type': 'text/html; charset=utf-8',
+          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"
+        }
+      }, async (err, resp, data) => {
+        const res = data.match(/qq\.maps\.LatLng\(([\d\.]+), ([\d\.]+)\)/);
+        let lat = res[1];
+        let lng = res[2];
+        if (lat > 0 && lng > 0) {
+          resolve({
+            'lng': lng,
+            'lat': lat
+          });
+          return;
+        }
+        console.log('自动获取经纬度 lat lng 失败，返回经纬度结果错误');
+        resolve({});
+      });
+    } catch (e) {
+      console.log('自动获取经纬度 lat lng 失败，触发异常');
+      resolve({});
+    }
+  });
 }
 
 function taskPostUrl(function_id, body = {}, function_id2) {
