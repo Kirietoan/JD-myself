@@ -9,17 +9,17 @@
 ============Quantumultx===============
 [task_local]
 #京东炸年兽🧨
-0 8 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js, tag=京东炸年兽🧨, enabled=true
+0 8 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js, tag=京东炸年兽🧨, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/main/Icon/lxk0301/jd_nian.png, enabled=true
 
 ================Loon==============
 [Script]
 cron "0 8 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js,tag=京东炸年兽🧨
 
 ===============Surge=================
-京东炸年兽🧨 = type=cron,cronexp="0 8 * * *",wake-system=1,timeout=200,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js
+京东炸年兽🧨 = type=cron,cronexp="0 8 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js
 
 ============小火箭=========
-京东炸年兽🧨 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js, cronexpr="0 8 * * *", timeout=200, enable=true
+京东炸年兽🧨 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js, cronexpr="0 8 * * *", timeout=3600, enable=true
  */
 const $ = new Env('京东炸年兽🧨');
 
@@ -47,7 +47,7 @@ if ($.isNode()) {
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [
   `cgxZLmGGI7ja6A3BFQCt7828r0gZCbpVJSIHvw1Oz-z_6bs-i1VChg4Jq6o@cgxZLmSLJL_Z6g3AAAPGr6rhETXydCqtPT1tSJSom85OKJdS-g@cgxZ-f85_RFAPZly3Ygoo3JLgluMxO9-OqVopF-e7SWJ1A@cgxZ--kE8Rt6P6hz3I0vO_0nitfligFgSqROOXKvkqHusK2EXtwX8A0@cgxZdTXtIL7SuA6aDAyo530KvEiX_vlmVMRbwioxznyJjXlva0Lexf3agos@cgxZdTXtIbmJ7F_JDw3_uqsXmW_aZjQZ_QtuUK9P8fi-Ye70onYoYvB7eKs`,
-  `cgxZLmGGI7ja6A3BFQCt7828r0gZCbpVJSIHvw1Oz-z_6bs-i1VChg4Jq6o@cgxZLmSLJL_Z6g3AAAPGr6rhETXydCqtPT1tSJSom85OKJdS-g@cgxZ-f85_RFAPZly3Ygoo3JLgluMxO9-OqVopF-e7SWJ1A@cgxZ--kE8Rt6P6hz3I0vO_0nitfligFgSqROOXKvkqHusK2EXtwX8A0@cgxZdTXtIL7SuA6aDAyo530KvEiX_vlmVMRbwioxznyJjXlva0Lexf3agos@cgxZdTXtIbmJ7F_JDw3_uqsXmW_aZjQZ_QtuUK9P8fi-Ye70onYoYvB7eKs`
+  `cgxZLmGGI7ja6A3BFQCt7828r0gZCbpVJSIHvw1Oz-z_6bs-i1VChg4Jq6o@cgxZLmSLJL_Z6g3AAAPGr6rhETXydCqtPT1tSJSom85OKJdS-g@cgxZ-f85_RFAPZly3Ygoo3JLgluMxO9-OqVopF-e7SWJ1A@cgxZ--kE8Rt6P6hz3I0vO_0nitfligFgSqROOXKvkqHusK2EXtwX8A0@cgxZdTXtIL7SuA6aDAyo530KvEiX_vlmVMRbwioxznyJjXlva0Lexf3agos@cgxZdTXtIbmJ7F_JDw3_uqsXmW_aZjQZ_QtuUK9P8fi-Ye70onYoYvB7eKs`,
 ];
 !(async () => {
   await requireConfig();
