@@ -35,10 +35,10 @@ async function inject_jd() {
 }
 
 function ignore_jd() {
-    // 京喜农场禁用部分Cookie，以避免被频繁通知需要去种植啥的
+    // 京东JOY禁用部分Cookie，以避免被频繁通知需要去种植啥的
     if (process.env.IGNORE_COOKIE_JDJOYPET) {
         try {
-            var ignore_indexs = JSON.parse(process.env.IGNORE_COOKIE_JXNC);
+            var ignore_indexs = JSON.parse(process.env.IGNORE_COOKIE_JDJOYPET);
             var ignore_names = [];
             ignore_indexs.forEach((it) => {
                 if (it == 1) {
@@ -51,9 +51,9 @@ function ignore_jd() {
                 key: "if (jdCookieNode[item]) {",
                 value: `if (jdCookieNode[item] && ${JSON.stringify(ignore_names)}.indexOf(item) == -1) {`,
             });
-            console.log(`IGNORE_COOKIE_JXNC已生效，将为您禁用${ignore_names}`);
+            console.log(`IGNORE_COOKIE_JDJOYPET已生效，将为您禁用${ignore_names}`);
         } catch (e) {
-            console.log("IGNORE_COOKIE_JXNC填写有误,不禁用任何Cookie");
+            console.log("IGNORE_COOKIE_JDJOYPET填写有误,不禁用任何Cookie");
         }
     }
     // 京喜农场禁用部分Cookie，以避免被频繁通知需要去种植啥的
