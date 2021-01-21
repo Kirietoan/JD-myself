@@ -41,10 +41,10 @@ const JD_BASE_API = `https://draw.jdfcloud.com//pet`;
 //下面给出好友邀请助力的示例填写规则
 let invite_pins = ["104720238-540078", "15905303986_p", "丶呐喊丶丶", "残雪秋影", "jd_448b0c4918e92", "jd_53c6a078fee20", "jd_owyazMKQSwfT"];
 //下面给出好友赛跑助力的示例填写规则
-let invite_pins = ["104720238-540078", "15905303986_p", "丶呐喊丶丶", "残雪秋影", "jd_448b0c4918e92", "jd_53c6a078fee20", "jd_owyazMKQSwfT"];
+let run_pins = ["104720238-540078", "15905303986_p", "丶呐喊丶丶", "残雪秋影", "jd_448b0c4918e92", "jd_53c6a078fee20", "jd_owyazMKQSwfT"];
 // $.LKYLToken = '76fe7794c475c18711e3b47185f114b5' || $.getdata('jdJoyRunToken');
 // $.LKYLToken = $.getdata('jdJoyRunToken');
-let invite_pins = ["104720238-540078", "15905303986_p", "丶呐喊丶丶", "残雪秋影", "jd_448b0c4918e92", "jd_53c6a078fee20", "jd_owyazMKQSwfT"];
+const friendsArr =  ["104720238-540078", "15905303986_p", "丶呐喊丶丶", "残雪秋影", "jd_448b0c4918e92", "jd_53c6a078fee20", "jd_owyazMKQSwfT"];
 
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -71,7 +71,39 @@ if ($.isNode()) {
     cookiesArr.push(jdCookieNode[item])
   })
 } else {
-
+  //支持 "京东多账号 Ck 管理"的cookie
+  let cookiesData = $.getdata('CookiesJD') || "[]";
+  cookiesData = jsonParse(cookiesData);
+  cookiesArr = cookiesData.map(item => item.cookie);
+  cookiesArr.reverse();
+  cookiesArr.push(...[$.getdata('CookieJD2'), $.getdata('CookieJD')]);
+  cookiesArr.reverse();
+  cookiesArr = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
+  if ($.getdata('jd_joy_invite_pin')) {
+    invite_pins = [];
+    invite_pins.push($.getdata('jd_joy_invite_pin'));
+  }
+  if ($.getdata('jd2_joy_invite_pin')) {
+    if (invite_pins.length > 0) {
+      invite_pins.push($.getdata('jd2_joy_invite_pin'))
+    } else {
+      invite_pins = [];
+      invite_pins.push($.getdata('jd2_joy_invite_pin'));
+    }
+  }
+  if ($.getdata('jd_joy_run_pin')) {
+    run_pins = []
+    run_pins.push($.getdata('jd_joy_run_pin'));
+  }
+  if ($.getdata('jd2_joy_run_pin')) {
+    if (run_pins.length > 0) {
+      run_pins.push($.getdata('jd2_joy_run_pin'))
+    } else {
+      run_pins = [];
+      run_pins.push($.getdata('jd2_joy_run_pin'));
+    }
+  }
+}
 //获取来客有礼Token
 let count = 0;
 async function getToken() {
