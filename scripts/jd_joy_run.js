@@ -139,6 +139,7 @@ async function getToken() {
   } else if (isURL(url, /^https:\/\/draw\.jdfcloud\.com(\/mirror)?\/\/api\/user\/user\/detail\?openId=/)){
     if ($request && $request.method !== 'OPTIONS') {
       const LKYLToken = $request.headers['LKYLToken'];
+      console.log(`${LKYLToken}`)
       //if ($.getdata('jdJoyRunToken')) {
         //if ($.getdata('jdJoyRunToken') !== LKYLToken) {
 
@@ -149,8 +150,7 @@ async function getToken() {
       //}
       $.setdata(LKYLToken, 'jdJoyRunToken');
 
-      $.msg($.name, '获取Token: 成功🎉', `\n${LKYLToken}\n`);
-
+      $.msg($.name, '获取Token: 成功🎉', ``);
       // $.done({ body: JSON.stringify(body) })
       $.done({ url: url })
     }
