@@ -267,7 +267,7 @@ async function downloader_notify() {
 }
 
 async function downloader_user_agents() {
-    await download("https://github.com/LXK9301/jd_scripts/blob/master/USER_AGENTS.js", "./USER_AGENTS.js", "云端UA");
+    await download("https://github.com/shuye72/MyActions/raw/main/scripts/USER_AGENTS.js", "./USER_AGENTS.js", "云端UA");
 }
 
 async function download(url, path, target) {
