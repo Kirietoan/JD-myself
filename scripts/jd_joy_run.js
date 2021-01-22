@@ -41,7 +41,7 @@ const JD_BASE_API = `https://draw.jdfcloud.com//pet`;
 //下面给出好友邀请助力的示例填写规则
 let invite_pins = ["104720238-540078", "15905303986_p", "丶呐喊丶丶", "残雪秋影", "jd_448b0c4918e92", "jd_53c6a078fee20", "jd_owyazMKQSwfT"];
 //下面给出好友赛跑助力的示例填写规则
-let run_pins = ["104720238-540078", "15905303986_p", "丶呐喊丶丶", "残雪秋影", "jd_448b0c4918e92", "jd_53c6a078fee20", "jd_owyazMKQSwfT"];
+let run_pins = ["104720238-540078", "15905303986_p"];
 // $.LKYLToken = '76fe7794c475c18711e3b47185f114b5' || $.getdata('jdJoyRunToken');
 // $.LKYLToken = $.getdata('jdJoyRunToken');
 const friendsArr = ["104720238-540078", "15905303986_p", "丶呐喊丶丶", "残雪秋影", "jd_448b0c4918e92", "jd_53c6a078fee20", "jd_owyazMKQSwfT"];
