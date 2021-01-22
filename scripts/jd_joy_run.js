@@ -189,7 +189,7 @@ async function main() {
     $.LKYLToken = $.getdata('jdJoyRunToken');
   }
   // $.LKYLToken = $.getdata('jdJoyRunToken');
-  console.log(`打印token:${$.LKYLToken}`)
+  console.log(`打印token \n${$.LKYLToken}\n`)
   if (!$.LKYLToken) {
     $.msg($.name, '【提示】请先获取来客有礼宠汪汪token', "微信搜索'来客有礼'小程序\n点击底部的'发现'Tab\n即可获取Token");
     return;
