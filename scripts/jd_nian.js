@@ -78,7 +78,7 @@ const pkInviteCodes = [
         continue
       }
       await shareCodesFormat();
-      // await shareCodesFormatPk()
+      await shareCodesFormatPk()
       await jdNian()
     }
   }
@@ -99,7 +99,7 @@ async function jdNian() {
       $.hasGroup = false
       await pkTaskDetail()
       if ($.hasGroup) await pkInfo()
-      // await helpFriendsPK()
+      await helpFriendsPK()
     }
     await $.wait(2000)
     await killCouponList()
