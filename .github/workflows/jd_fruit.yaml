@@ -6,7 +6,7 @@ name: 京东农场
 on:
     workflow_dispatch:
     schedule:
-        - cron: "30 8,16 * * *"
+        - cron: "30 8,12,16 * * *"
     watch:
         types: [started]
     repository_dispatch:
