@@ -124,7 +124,7 @@ async function getToken() {
         $.setdata(`${count}`, 'countFlag');
         $.msg($.name, '更新Token: 成功🎉', ``);
         console.log(`开始上传Token`)
-        await $.http.get({url: `http://jd.turinglabs.net/api/v2/jd/joy/create/${LKYLToken}/`}).then((resp) => {
+        await $.http.get({url: `http://jd.turinglabs.net/api/v2/jd/joy/create/89e65f3aeaa53e8fc13691272e2e79e9/`}).then((resp) => {
           if (resp.statusCode === 200) {
             let { body } = resp;
             console.log(`Token提交结果:${body}`)
@@ -160,7 +160,7 @@ async function getToken() {
 }
 function readToken() {
   return new Promise(resolve => {
-    $.get({url: `http://jd.turinglabs.net/api/v2/jd/joy/read/1/`, 'timeout': 10000}, (err, resp, data) => {
+    $.get({url: `https://raw.githubusercontent.com/shuye72/RandomShareCode/master/JD_JOY_Run_Token.json`, 'timeout': 10000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
