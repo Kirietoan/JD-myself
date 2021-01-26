@@ -9,17 +9,17 @@
 ============Quantumultx===============
 [task_local]
 #京东炸年兽🧨
-0 9,12,20 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js, tag=京东炸年兽🧨, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/main/Icon/lxk0301/jd_nian.png, enabled=true
+0 9,12,20,21 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js, tag=京东炸年兽🧨, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/main/Icon/lxk0301/jd_nian.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "0 9,12,20 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js,tag=京东炸年兽🧨
+cron "0 9,12,20,21 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js,tag=京东炸年兽🧨
 
 ===============Surge=================
-京东炸年兽🧨 = type=cron,cronexp="0 9,12,20 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js
+京东炸年兽🧨 = type=cron,cronexp="0 9,12,20,21 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js
 
 ============小火箭=========
-京东炸年兽🧨 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js, cronexpr="0 9,12,20 * * *", timeout=3600, enable=true
+京东炸年兽🧨 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js, cronexpr="0 9,12,20,21 * * *", timeout=3600, enable=true
  */
 const $ = new Env('京东炸年兽🧨');
 
@@ -50,8 +50,8 @@ const inviteCodes = [
   `cgxZLmGGI7ja6A3BFQCt7828r0gZCbpVJSIHvw1Oz-z_6bs-i1VChg4Jq6o@cgxZLmSLJL_Z6g3AAAPGr6rhETXydCqtPT1tSJSom85OKJdS-g@cgxZ-f85_RFAPZly3Ygoo3JLgluMxO9-OqVopF-e7SWJ1A@cgxZ--kE8Rt6P6hz3I0vO_0nitfligFgSqROOXKvkqHusK2EXtwX8A0@cgxZdTXtIL7SuA6aDAyo530KvEiX_vlmVMRbwioxznyJjXlva0Lexf3agos@cgxZdTXtIbmJ7F_JDw3_uqsXmW_aZjQZ_QtuUK9P8fi-Ye70onYoYvB7eKs`,
 ];
 const pkInviteCodes = [
-'IgNWdiLGaPbb6grOCgWr7MoMgbcJhnwaHRe3To_xG-Rcm1K7mVQeOdjFTsRvL0-g@IgNWdiLGaPbb7wfJDQap7AnE5GFLFTmdnDamLEmW6GWv1uE0x0XJuncz@IgNWdiLGaPYMdLUQo59-eLKybPO_meU88tdcIj1Na0Hz-pinc_B-VA@IgNWdiLGaPYOYogcqaV8SUEq1NgUVYea1uegqMX9V7WttCJQR3Q4UDxIsasrVg@IgNWdiLGaPaAvmHMC1avvrmUeZI3mlwVgSCzFsnpcf3PoWdj_G6QX73c7IOcChsv@IgNWdiLGaPbb7wfPDAOg52HBOAQQUILwfJ_mMzCKTKOaZ8Jgdy2SEa-9@IgNWdiLGaPaAvmG_dFHLqJMIFyIFBZNaKMsAotbK6neTBcXazNlFmuNdINrB9w@IgNWdiLGaPaAvmHOCVP77GiTPTIpLaLPB6LfVIA6t8ubsNhe7V07wC_iiK6xKyGO@IgNWdiLGaPaAvmHNDA3776mwUd2EnpXm7aqS89UlykSZxInD6Pye1lafjRhmFkQn',
-'IgNWdiLGaPbb6grOCgWr7MoMgbcJhnwaHRe3To_xG-Rcm1K7mVQeOdjFTsRvL0-g@IgNWdiLGaPbb7wfJDQap7AnE5GFLFTmdnDamLEmW6GWv1uE0x0XJuncz@IgNWdiLGaPYMdLUQo59-eLKybPO_meU88tdcIj1Na0Hz-pinc_B-VA@IgNWdiLGaPYOYogcqaV8SUEq1NgUVYea1uegqMX9V7WttCJQR3Q4UDxIsasrVg@IgNWdiLGaPaAvmHMC1avvrmUeZI3mlwVgSCzFsnpcf3PoWdj_G6QX73c7IOcChsv@IgNWdiLGaPbb7wfPDAOg52HBOAQQUILwfJ_mMzCKTKOaZ8Jgdy2SEa-9@IgNWdiLGaPaAvmG_dFHLqJMIFyIFBZNaKMsAotbK6neTBcXazNlFmuNdINrB9w@IgNWdiLGaPaAvmHOCVP77GiTPTIpLaLPB6LfVIA6t8ubsNhe7V07wC_iiK6xKyGO@IgNWdiLGaPaAvmHNDA3776mwUd2EnpXm7aqS89UlykSZxInD6Pye1lafjRhmFkQn'
+ 'IgNWdiLGaPbb6grOCgWr7MoMgbcJhnwaHRe3To_xG-Rcm1K7mVQeOdjFTsRvL0-g@IgNWdiLGaPbb7wfJDQap7AnE5GFLFTmdnDamLEmW6GWv1uE0x0XJuncz@IgNWdiLGaPYMdLUQo59-eLKybPO_meU88tdcIj1Na0Hz-pinc_B-VA@IgNWdiLGaPYOYogcqaV8SUEq1NgUVYea1uegqMX9V7WttCJQR3Q4UDxIsasrVg@IgNWdiLGaPaAvmHMC1avvrmUeZI3mlwVgSCzFsnpcf3PoWdj_G6QX73c7IOcChsv@IgNWdiLGaPbb7wfPDAOg52HBOAQQUILwfJ_mMzCKTKOaZ8Jgdy2SEa-9@IgNWdiLGaPaAvmG_dFHLqJMIFyIFBZNaKMsAotbK6neTBcXazNlFmuNdINrB9w@IgNWdiLGaPaAvmHOCVP77GiTPTIpLaLPB6LfVIA6t8ubsNhe7V07wC_iiK6xKyGO@IgNWdiLGaPaAvmHNDA3776mwUd2EnpXm7aqS89UlykSZxInD6Pye1lafjRhmFkQn',
+ 'IgNWdiLGaPbb6grOCgWr7MoMgbcJhnwaHRe3To_xG-Rcm1K7mVQeOdjFTsRvL0-g@IgNWdiLGaPbb7wfJDQap7AnE5GFLFTmdnDamLEmW6GWv1uE0x0XJuncz@IgNWdiLGaPYMdLUQo59-eLKybPO_meU88tdcIj1Na0Hz-pinc_B-VA@IgNWdiLGaPYOYogcqaV8SUEq1NgUVYea1uegqMX9V7WttCJQR3Q4UDxIsasrVg@IgNWdiLGaPaAvmHMC1avvrmUeZI3mlwVgSCzFsnpcf3PoWdj_G6QX73c7IOcChsv@IgNWdiLGaPbb7wfPDAOg52HBOAQQUILwfJ_mMzCKTKOaZ8Jgdy2SEa-9@IgNWdiLGaPaAvmG_dFHLqJMIFyIFBZNaKMsAotbK6neTBcXazNlFmuNdINrB9w@IgNWdiLGaPaAvmHOCVP77GiTPTIpLaLPB6LfVIA6t8ubsNhe7V07wC_iiK6xKyGO@IgNWdiLGaPaAvmHNDA3776mwUd2EnpXm7aqS89UlykSZxInD6Pye1lafjRhmFkQn',
 ]
 !(async () => {
   await requireConfig();
@@ -107,6 +107,7 @@ async function jdNian() {
       $.hasGroup = false
       await pkTaskStealDetail()
       if ($.hasGroup) await pkInfo()
+      await helpFriendsPK()
     }
     await $.wait(2000)
     await killCouponList()
@@ -1135,7 +1136,9 @@ function shareCodesFormatPk() {
       const tempIndex = $.index > pkInviteCodes.length ? (pkInviteCodes.length - 1) : ($.index - 1);
       $.newShareCodesPk = pkInviteCodes[tempIndex].split('@');
     }
-    const readShareCodeRes = await readShareCodePk();
+    let readShareCodeRes = null
+    if (new Date().getUTCHours() >= 12)
+      readShareCodeRes = await readShareCodePk();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       $.newShareCodesPk = [...new Set([...$.newShareCodesPk, ...(readShareCodeRes.data || [])])];
     }
