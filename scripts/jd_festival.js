@@ -29,8 +29,8 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let cookiesArr = [], cookie = '', message;
 
 const inviteCodes = [
-``,
-``
+`605755ad-5ec5-48a9-932a-17545bc9ea28@54698ef2-708e-4462-b1bd-fbfe1e3a7ac0@42c7a05f-dc3d-4ead-a04f-6ea77f1d1ea7@c734d423-e7ea-453a-8680-911bb489b964@`,
+`605755ad-5ec5-48a9-932a-17545bc9ea28@54698ef2-708e-4462-b1bd-fbfe1e3a7ac0@42c7a05f-dc3d-4ead-a04f-6ea77f1d1ea7@c734d423-e7ea-453a-8680-911bb489b964@`
 ];
 
 if ($.isNode()) {
