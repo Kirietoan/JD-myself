@@ -210,6 +210,7 @@ function submitQues(question) {
     }, (err, resp, data) => {
       try {
         data = JSON.parse(data)
+        console.log(data)
         if (data.status === 200) {
           console.log(`提交成功`)
         } else {
@@ -234,7 +235,7 @@ function answer(body = {}) {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           data = JSON.parse(data);
-          console.log(data)
+           //console.log(data)
           if (data && data['retCode'] === "200") {
             if (data.result.isCorrect) {
               console.log(`您选对啦！获得积分${data.result.score}，本次答题共计获得${data.result.totalScore}分`)
