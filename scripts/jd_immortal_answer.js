@@ -210,7 +210,7 @@ function submitQues(question) {
     }, (err, resp, data) => {
       try {
         data = JSON.parse(data)
-        resp = JSON.parse(resp)
+        resp = JSON.stringify(resp)
         console.log(data)
         console.log(resp)
         if (data.status === 200) {
