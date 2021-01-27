@@ -5,8 +5,6 @@ name: 京东神仙书院答题📕(目前不完善谨慎使用)
 
 on:
     workflow_dispatch:
-    schedule:
-        - cron: "0 5 * * *"
     watch:
         types: [started]
     repository_dispatch:
