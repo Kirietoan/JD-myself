@@ -36,8 +36,8 @@ let cookiesArr = [], cookie = '', message;
 const randomCount = $.isNode() ? 20 : 5;
 
 const inviteCodes = [
-  ``,
-  ``,
+  `xb2W9zc9lZq7ayYHaXuWTx2oIFOszXCA75ZlxByE7VE@ZrwENRJkwRpJZhc4NZ3Frg@FQO-3yADGyG-FUexF-1zfA@l-I7nCOHAHymIN4VxQmFXaabTnqaRQwvcQ6QiZTIBrQ@8uk9feEDizb85OOMtVDmjRmU16RXv84kiHA3m5m3NCo@lacKA68G1VgpzZsdPxvIuw`,
+  `xb2W9zc9lZq7ayYHaXuWTx2oIFOszXCA75ZlxByE7VE@ZrwENRJkwRpJZhc4NZ3Frg@FQO-3yADGyG-FUexF-1zfA@l-I7nCOHAHymIN4VxQmFXaabTnqaRQwvcQ6QiZTIBrQ@8uk9feEDizb85OOMtVDmjRmU16RXv84kiHA3m5m3NCo@lacKA68G1VgpzZsdPxvIuw`,
 ];
 
 if ($.isNode()) {
@@ -493,7 +493,7 @@ function readShareCode() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log(`随机取${randomCount}个PK助力码放到您固定的互助码后面(不影响已有固定互助)`)
+            console.log(`随机取PK助力码放到您固定的互助码后面(不影响已有固定互助)`)
             data = JSON.parse(data);
           }
         }
