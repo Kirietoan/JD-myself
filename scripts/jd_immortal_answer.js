@@ -210,7 +210,9 @@ function submitQues(question) {
     }, (err, resp, data) => {
       try {
         data = JSON.parse(data)
+        resp = JSON.parse(resp)
         console.log(data)
+        console.log(resp)
         if (data.status === 200) {
           console.log(`提交成功`)
         } else {
