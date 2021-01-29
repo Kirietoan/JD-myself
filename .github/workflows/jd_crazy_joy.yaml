@@ -3,7 +3,7 @@ name: 京东疯狂JOY
 on:
     workflow_dispatch:
     schedule:
-        - cron: "0 1-23/5 * * *"
+        - cron: "0 20 * * *"
     watch:
         types: [started]
     repository_dispatch:
