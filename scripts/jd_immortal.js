@@ -13,17 +13,17 @@ boxjs IMMORTAL_LATLON
 ============Quantumultx===============
 [task_local]
 #京东神仙书院
-20 8 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_immortal.js, tag=京东神仙书院, img-url=https://raw.githubusercontent.com/Orz-3/task/master/jd.png, enabled=true
+20 8 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_immortal.js, tag=京东神仙书院, img-url=https://raw.githubusercontent.com/Orz-3/task/master/jd.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "20 8 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_immortal.js,tag=京东神仙书院
+cron "20 8 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_immortal.js, tag=京东神仙书院
 
 ===============Surge=================
-京东神仙书院 = type=cron,cronexp="20 8 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_immortal.js
+京东神仙书院 = type=cron,cronexp="20 8 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_immortal.js
 
 ============小火箭=========
-京东神仙书院 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_immortal.js, cronexpr="20 8 * * *", timeout=3600, enable=true
+京东神仙书院 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_immortal.js, cronexpr="20 8 * * *", timeout=3600, enable=true
  */
 const $ = new Env('京东神仙书院');
 
@@ -267,6 +267,8 @@ function exchange() {
           if (data && data['retCode'] === "200") {
             const {consumedUserScore, receivedJbeanNum} = data.result
             console.log(`兑换成功，消耗${consumedUserScore}积分，获得${receivedJbeanNum}京豆`)
+            $.msg($.name, ``, `京东账号${$.index} ${$.nickName}\n兑换成功，消耗${consumedUserScore}积分，获得${receivedJbeanNum}京豆`);
+            if ($.isNode()) await notify.sendNotify(`${$.name} - ${$.index} - ${$.nickName}`, `兑换成功，消耗${consumedUserScore}积分，获得${receivedJbeanNum}京豆`);
           } else {
             $.risk = true
             console.log(`账号被风控，无法参与活动`)
@@ -349,7 +351,7 @@ function readShareCode() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
+            console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
             data = JSON.parse(data);
           }
         }
