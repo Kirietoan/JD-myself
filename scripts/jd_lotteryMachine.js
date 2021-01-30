@@ -20,7 +20,7 @@ const STRSPLIT = "|";
 const needSum = false;            //是否需要显示汇总
 const printDetail = false;        //是否显示出参详情
 const appIdArr = ['1EFRRxA','1EFRQwA','1EFRTyg','1EFRSxA','1EFRSyw','1EFRVxA','1EFRUwg','1EFRVyg','1EFRUww','1EFRVxg','1EFRVxw','1EFRUxA','1EFRUxg','1EFRUyw','1EFRVyw']
-const shareCodeArr = ['P04z54XCjVWmIaW5m9cZ2f433tIlJz4FjX2kfk','P04z54XCjVXnIaW5m9cZ2f433tIlLKXiUijZw4','P04z54XCjVUloaW5m9cZ2f433tIlNDtvQURO58','T0225KkcRx4b8lbWJU72wvZZcwCjVVmIaW5kRrbA','T0225KkcRx4b8lbWJU72wvZZcwCjVVl4aW5kRrbA','T0225KkcRx4b8lbWJU72wvZZcwCjVSmIaW5kRrbA','T0225KkcRx4b8lbWJU72wvZZcwCjVTnoaW5kRrbA','T0225KkcRx4b8lbWJU72wvZZcwCjVSloaW5kRrbA','T0225KkcRx4b8lbWJU72wvZZcwCjVTn4aW5kRrbA','T0225KkcRx4b8lbWJU72wvZZcwCjVSmoaW5kRrbA','T0225KkcRx4b8lbWJU72wvZZcwCjVSm4aW5kRrbA','T0225KkcRx4b8lbWJU72wvZZcwCjVTmIaW5kRrbA','T0225KkcRx4b8lbWJU72wvZZcwCjVTmoaW5kRrbA','T0225KkcRx4b8lbWJU72wvZZcwCjVTl4aW5kRrbA','T0225KkcRx4b8lbWJU72wvZZcwCjVSl4aW5kRrbA']
+const shareCodeArr = ['T018v_h6QBsa9VfeKByb1ACjVWmIaW5kRrbA','T022v_13RxwZ91ffPR_wlPcNfACjVXnIaW5kRrbA','T022v_13RxwZ91ffPR_wlPcNfACjVUloaW5kRrbA','T022v_13RxwZ91ffPR_wlPcNfACjVVmIaW5kRrbA','T0225KkcRx4b8lbWJU72wvZZcwCjVVl4aW5kRrbA','T022v_13RxwZ91ffPR_wlPcNfACjVSmIaW5kRrbA','T022v_13RxwZ91ffPR_wlPcNfACjVTnoaW5kRrbA','T022v_13RxwZ91ffPR_wlPcNfACjVSloaW5kRrbA','T022v_13RxwZ91ffPR_wlPcNfACjVTn4aW5kRrb','T022v_13RxwZ91ffPR_wlPcNfACjVSmoaW5kRrbA','T022v_13RxwZ91ffPR_wlPcNfACjVSm4aW5kRrbA','T022v_13RxwZ91ffPR_wlPcNfACjVTmIaW5kRrbA','T022v_13RxwZ91ffPR_wlPcNfACjVTmoaW5kRrbA','T022v_13RxwZ91ffPR_wlPcNfACjVTl4aW5kRrbA','T022v_13RxwZ91ffPR_wlPcNfACjVSl4aW5kRrbA']
 const homeDataFunPrefixArr = ['','','healthyDay','wfh','healthyDay','healthyDay','healthyDay','healthyDay','healthyDay','healthyDay','healthyDay','healthyDay','healthyDay','healthyDay']
 const collectScoreFunPrefixArr = ['','','','wfh','','','','','','','','','','']
 const lotteryResultFunPrefixArr = ['','','interact_template','','interact_template','interact_template','interact_template','interact_template','interact_template','interact_template','interact_template','interact_template','interact_template','interact_template']
@@ -168,9 +168,9 @@ function interact_template_getHomeData(timeout = 0) {
             for (let k = data.data.result.taskVos[i].times; k < data.data.result.taskVos[i].maxTimes; k++) {
               for (let j in list) {
                 if (list[j].status === 1) {
-                  //console.log(list[j].simpleRecordInfoVo||list[j].assistTaskDetailVo)
+                 // console.log(list[j].simpleRecordInfoVo||list[j].assistTaskDetailVo)
                   console.log("\n" + (list[j].title || list[j].shopName||list[j].skuName))
-                  //console.log(list[j].itemId)
+                 // console.log(list[j].itemId)
                   if (list[j].itemId) {
                     await harmony_collectScore(list[j].taskToken,data.data.result.taskVos[i].taskId,list[j].itemId,1);
                     if (k === data.data.result.taskVos[i].maxTimes - 1) await interact_template_getLotteryResult(data.data.result.taskVos[i].taskId);
