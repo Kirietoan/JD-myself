@@ -254,7 +254,6 @@ async function invite(invite_pins) {
         } else if (helpStatus=== 'invite_full') {
           continue;
         } else if (helpStatus=== 'can_help') {
-          console.log(`开始给好友 ${item} 助力\n`)
           const LKYL_DATA = await helpInviteFriend(item);
           if (LKYL_DATA.errorCode === 'L0001' && !LKYL_DATA.success) {
             console.log('来客有礼宠汪汪token失效');
