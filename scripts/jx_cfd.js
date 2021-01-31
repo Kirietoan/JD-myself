@@ -89,6 +89,7 @@ $.info = {};
 
 !(async () => {
   if (!getCookies()) return;
+  if (!getTokens()) return;
   for (let i = 0; i < $.cookieArr.length; i++) {
     $.currentCookie = $.cookieArr[i];
     $.currentToken = $.tokenArr[0];
@@ -854,6 +855,25 @@ function getCookies() {
   }
   return true;
 }
+
+function getTokens() {
+  if ($.isNode()) {
+    Object.keys(jdTokenNode).forEach((item) => {
+      $.tokenArr.push(jdTokenNode[item] ? JSON.parse(jdTokenNode[item]) : '{}');
+    })
+  } else {
+    $.tokenArr = [$.getdata('jxnc_token1') || '{}', $.getdata('jxnc_token2') || '{}'];
+  }
+  if (!$.tokenArr[0]) {
+    $.msg(
+      $.name,
+      "【⏰提示】请先获取京喜Token\n获取方式见脚本说明"
+    );
+    return false;
+  }
+  return true;
+}
+
 function taskUrl(function_path, body) {
   return {
     url: `${JD_API_HOST}jxcfd/${function_path}?strZone=jxcfd&bizCode=jxcfd&source=jxcfd&dwEnv=7&_cfd_t=${Date.now()}&ptag=138631.26.55&${body}&_ste=1&_=${Date.now()}&sceneval=2&g_login_type=1&g_ty=ls`,
