@@ -1137,7 +1137,7 @@ function shareCodesFormatPk() {
       $.newShareCodesPk = pkInviteCodes[tempIndex].split('@');
     }
     let readShareCodeRes = null
-    if (new Date().getUTCHours() >= 12)
+    //if (new Date().getUTCHours() >= 12)
       readShareCodeRes = await readShareCodePk();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       $.newShareCodesPk = [...new Set([...$.newShareCodesPk, ...(readShareCodeRes.data || [])])];
