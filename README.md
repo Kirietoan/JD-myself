@@ -33,4 +33,4 @@
 (时效性较快)lxk0301-Secrets配置[点击查看](https://gitee.com/lxk0301/jd_scripts/blob/master/githubAction.md)
 
 
-> 具体如何取 cookie 如何配置,可参考 [lxk0301 的获取京东Cookies教程](https://gitee.com/lxk0301/jd_scripts/blob/master/githubAction.md#%E4%BA%AC%E4%B8%9Ccookie)
+> 具体如何取 cookie 如何配置,可参考 [lxk0301 的获取京东Cookies教程](https://gitee.com/lxk0301/jd_scripts/blob/master/backUp/GetJdCookie.md)
