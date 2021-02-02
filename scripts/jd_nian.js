@@ -50,8 +50,8 @@ const inviteCodes = [
  '',
 ];
 const pkInviteCodes = [
- 'IgNWdiLGaPbb6grOCgWr7MoMgbcJhnwaHRe3To_xG-Rcm1K7mVQeOdjFTsRvL06l@IgNWdiLGaPbb7wfJDQap7AnE5GFLFTmdnDamLEmW6GWv1uE0x0XJunY2@IgNWdiLGaPYMdLUQo59-eLKybPO_meU88tdcIj1Na0Hz-pinc_B_UQ@IgNWdiLGaPYOYogcqaV8SUEq1NgUVYea1uegqMX9V7WttCJQR3Q4UDxIsasqUw@IgNWdiLGaPaAvmHMC1avvrmUeZI3mlwVgSCzFsnpcf3PoWdj_G6QX73c7IOcChoq',
- 'IgNWdiLGaPbb6grOCgWr7MoMgbcJhnwaHRe3To_xG-Rcm1K7mVQeOdjFTsRvL06l@IgNWdiLGaPbb7wfJDQap7AnE5GFLFTmdnDamLEmW6GWv1uE0x0XJunY2@IgNWdiLGaPYMdLUQo59-eLKybPO_meU88tdcIj1Na0Hz-pinc_B_UQ@IgNWdiLGaPYOYogcqaV8SUEq1NgUVYea1uegqMX9V7WttCJQR3Q4UDxIsasqUw@IgNWdiLGaPaAvmHMC1avvrmUeZI3mlwVgSCzFsnpcf3PoWdj_G6QX73c7IOcChoq',
+ '',
+ '',
 ]
 !(async () => {
   await requireConfig();
@@ -1332,7 +1332,7 @@ function shareCodesFormatPk() {
       $.newShareCodesPk = pkInviteCodes[tempIndex].split('@');
     }
     let readShareCodeRes = null
-    if (new Date().getUTCHours() >= 12)
+    //if (new Date().getUTCHours() >= 12)
       readShareCodeRes = await readShareCodePk();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       $.newShareCodesPk = [...new Set([...$.newShareCodesPk, ...(readShareCodeRes.data || [])])];
