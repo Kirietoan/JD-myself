@@ -344,8 +344,7 @@ function getHomeData(info = false) {
               $.secretp = null
               return
             }
-            console.log(`当前爆竹${$.userInfo.raiseInfo.remainScore}🧨，下一关需要${$.userInfo.raiseInfo.nextLevelScore - $.userInfo.raiseInfo.curLevelStartScore}🧨`)
-
+            console.log(`\n\n当前等级:${$.userInfo.raiseInfo.curMaxLevel}\n当前爆竹${$.userInfo.raiseInfo.remainScore}🧨，下一关需要${$.userInfo.raiseInfo.nextLevelScore - $.userInfo.raiseInfo.curLevelStartScore}🧨\n\n`)
             if (info) {
               message += `当前爆竹${$.userInfo.raiseInfo.remainScore}🧨\n`
               return
@@ -619,7 +618,7 @@ function getTaskList(body = {}) {
             if (data.data.bizCode === 0) {
               if (JSON.stringify(body) === "{}") {
                 $.taskVos = data.data.result.taskVos;//任务列表
-                console.log(`您的好友助力码为${data.data.result.inviteId}`)
+                console.log(`\n\n您的好友助力码为${data.data.result.inviteId}\n\n`)
               }
               // $.userInfo = data.data.result.userInfo;
             }
@@ -838,7 +837,7 @@ function pkInfo() {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data.code === 0 && data.data && data.data.bizCode === 0) {
-              console.log(`\n您的好友PK助力码为${data.data.result.groupInfo.groupAssistInviteId}\n注：此pk邀请码每天都变！`)
+              console.log(`\n\n您的好友PK助力码为${data.data.result.groupInfo.groupAssistInviteId}\n注：此pk邀请码每天都变！\n\n`)
               let info = data.data.result.groupPkInfo
               console.log(`预计分得:${data.data.result.groupInfo.personalAward}红包`)
               if (info.dayAward)
