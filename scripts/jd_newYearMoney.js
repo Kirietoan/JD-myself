@@ -152,7 +152,7 @@ async function helpFriends() {
     if (!code) continue
     await helpFriend(code)
     if (!$.canHelp) return
-    await $.wait(4200)
+    await $.wait(6500)
   }
 }
 
