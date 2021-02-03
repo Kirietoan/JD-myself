@@ -50,8 +50,8 @@ const inviteCodes = [
  '',
 ];
 const pkInviteCodes = [
- '',
- '',
+ 'IgNWdiLGaPbb6grOCgWr7MoMgbcJhnwaHRe3To_xG-Rcm1K7mVQeOdjFTsRvL06i@IgNWdiLGaPbb7wfJDQap7AnE5GFLFTmdnDamLEmW6GWv1uE0x0XJunYx@IgNWdiLGaPYMdLUQo59-eLKybPO_meU88tdcIj1Na0Hz-pinc_B_Vg@IgNWdiLGaPYOYogcqaV8SUEq1NgUVYea1uegqMX9V7WttCJQR3Q4UDxIsasqVA@IgNWdiLGaPaAvmHMC1avvrmUeZI3mlwVgSCzFsnpcf3PoWdj_G6QX73c7IOcChot',
+ 'IgNWdiLGaPbb6grOCgWr7MoMgbcJhnwaHRe3To_xG-Rcm1K7mVQeOdjFTsRvL06i@IgNWdiLGaPbb7wfJDQap7AnE5GFLFTmdnDamLEmW6GWv1uE0x0XJunYx@IgNWdiLGaPYMdLUQo59-eLKybPO_meU88tdcIj1Na0Hz-pinc_B_Vg@IgNWdiLGaPYOYogcqaV8SUEq1NgUVYea1uegqMX9V7WttCJQR3Q4UDxIsasqVA@IgNWdiLGaPaAvmHMC1avvrmUeZI3mlwVgSCzFsnpcf3PoWdj_G6QX73c7IOcChot',
 ]
 let nowTimes = new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000);
 const openUrl = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://wbbny.m.jd.com/babelDiy/Zeus/2cKMj86srRdhgWcKonfExzK4ZMBy/index.html%22%20%7D`;
