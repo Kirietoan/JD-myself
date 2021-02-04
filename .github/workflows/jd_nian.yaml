@@ -6,7 +6,7 @@ name: 京东炸年兽🧨
 on:
     workflow_dispatch:
     schedule:
-        - cron: "0/15 1,2,11-14 * * *"
+        - cron: "0 1,16 * * *"
     watch:
         types: [started]
     repository_dispatch:
